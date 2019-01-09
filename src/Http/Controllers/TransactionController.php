@@ -1,6 +1,6 @@
 <?php
 
-namespace Bryceandy\Laravel_Pesapal\src\Http\Controllers;
+namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
