@@ -1,6 +1,6 @@
 <?php
 
-namespace Bryceandy\Laravel_Pesapal\src\Models;
+namespace Bryceandy\Laravel_Pesapal\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

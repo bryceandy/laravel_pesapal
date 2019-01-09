@@ -1,5 +1,4 @@
 <?php
-
 namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
 use App\Http\Controllers\Controller;
