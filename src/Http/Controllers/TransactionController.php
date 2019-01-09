@@ -8,7 +8,7 @@ class TransactionController extends Controller
 {
     public function details()
     {
-        return view ('Bryceandy/Laravel_Pespal::details');
+        return view ('laravel_pespal::details');
     }
 
     public function payment(Request $request)
