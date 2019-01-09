@@ -1,5 +1,11 @@
 <?php
 
-Route::get('details', 'TransactionController@details');
+Route::group(['namespace' => 'Bryceandy\Laravel_Pesapal\Http\Controllers'], function(){
 
-Route::post('iframe', 'TransactionController@payment');
+    Route::get('details', 'TransactionController@details');
+
+    Route::post('iframe', 'TransactionController@payment');
+
+});
+
+
