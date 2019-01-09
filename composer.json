@@ -1,0 +1,21 @@
+{
+    "name": "bryce/laravel-pesapal",
+    "description": "An unofficial Pesapal integration for Laravel. Multiple payment options including m-pesa, tigo pesa, Visa, Mastercard, American Express in Kenya, Tanzania & Uganda.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "bryceandy",
+            "email": "hello@bryceandy.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bryceandy\\Laravel-Pesapal\\PesapalServiceProvider"
+            ]
+        }
+    }
+}
