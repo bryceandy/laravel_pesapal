@@ -15,13 +15,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Bryceandy\\Laravel-Pesapal\\": "src/"
+            "Bryceandy\\Laravel_Pesapal\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Bryceandy\\Laravel-Pesapal\\PesapalServiceProvider"
+                "Bryceandy\\Laravel_Pesapal\\PesapalServiceProvider"
             ]
         }
     }
