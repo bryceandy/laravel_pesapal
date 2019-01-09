@@ -10,7 +10,14 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        
+    },
+    "autoload": {
+        "psr-4": {
+            "Bryceandy\\Laravel-Pesapal\\": "src/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
