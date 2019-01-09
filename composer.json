@@ -18,6 +18,11 @@
             "Bryceandy\\Laravel_Pesapal\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Bryceandy\\Laravel_Pesapal\\": "src/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
