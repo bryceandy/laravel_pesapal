@@ -13,6 +13,9 @@
     "require": {
         "ext-curl": "*"
     },
+    "require-dev": {
+        "ext-curl": "*"
+    },
     "autoload": {
         "psr-4": {
             "Bryceandy\\Laravel_Pesapal\\": "src/"
