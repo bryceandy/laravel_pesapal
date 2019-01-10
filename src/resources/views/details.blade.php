@@ -5,15 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <style>
+        body{padding-top: 5%;}
+        .ui.form{ max-width: 60%!important; margin-left: 20%!important;}
+        h1{text-align: center}
+        .ui.form .fields{display: block!important;}
+        .field .inl{display: inline!important; width: 49.5%!important;}
+    </style>
 
     <title>Payment Details</title>
 </head>
 <body>
 
+<h1>Payment Details Form</h1>
+
 <form action="/iframe" method="post">
-    @csrf
+    {{csrf_field()}}
 
     <div class="ui form">
         <div class="fields">
@@ -34,13 +43,13 @@
 
             <div class="field">
                 <label>Amount</label>
-                <select name="currency" id="currency" class="ui search dropdown">
-                    <option value="TZS">Tanzanian shillings</option>
-                    <option value="KES">Kenyan shillings</option>
+                <input type="number" name="amount" class="inl" required>
+                <select name="currency" id="currency" class="ui search dropdown inl">
+                    <option value="TZS">Tanzanian Shillings</option>
+                    <option value="KES">Kenyan Shillings</option>
                     <option value="UGX">Ugandan Shillings</option>
                     <option value="USD">US Dollars</option>
                 </select>
-                <input type="number" name="amount" required>
             </div>
 
             <div class="field">
@@ -61,14 +70,14 @@
             </div>
 
             {{--Do not change this MERCHANT value--}}
-            <input type="hidden" name="type" value="MERCHANT" readonly="readonly" />
+            <input type="hidden" name="type" value="MERCHANT" readonly="readonly" /><br>
 
-            <div class="ui animated button" type="submit" tabindex="0">
-                <div class="visible content">Next</div>
-                <div class="hidden content">
+            <button class="ui animated button" type="submit" tabindex="0">
+                <span class="visible content">Next</span>
+                <span class="hidden content">
                     <i class="right arrow icon"></i>
-                </div>
-            </div>
+                </span>
+            </button>
         </div>
     </div>
 

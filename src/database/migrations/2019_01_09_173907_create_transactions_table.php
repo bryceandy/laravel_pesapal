@@ -16,15 +16,26 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('user_id');
+
+            //only include user_id if you want to associate a user on your Users table with this Transaction
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('phone');
             $table->float('amount');
             $table->text('currency');
-            $table->text('status')->nullable()->default('PLACED');
+
+            //a new transaction will be marked as null until payment is confirmed
+            $table->text('status')->nullable();
+
+            //the reference and description will also be recorded on your pesapal dashboard
             $table->string('reference');
             $table->string('description');
+
+            //this tracking_id is necessary when sending you notifications forexample if a payment is PENDING or COMPLETED etc...
             $table->string('tracking_id')->nullable()->default(null);
+
+            //many payment methods exist such as mpesa, tigopesa, visa, mastercard, american express etc...
             $table->text('payment_method')->nullable()->default(null);
         });
     }
