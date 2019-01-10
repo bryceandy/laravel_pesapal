@@ -54,6 +54,6 @@ return [
    | work correctly once you go live.
    |
    */
-    'callback_url' => 'http://localhost/callback',
+    'callback_url' => 'http://yourSite.com/callback',
 
 ];
