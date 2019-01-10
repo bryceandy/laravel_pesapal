@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->string('phone');
-            $table->float('amount');
+            $table->bigInteger('amount');
             $table->text('currency');
 
             //a new transaction will be marked as null until payment is confirmed

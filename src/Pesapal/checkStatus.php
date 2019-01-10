@@ -16,9 +16,8 @@ class pesapalCheckStatus {
     public function __construct(){
 
         $this->token = $this->params	= NULL;
-        //Kenyan Merchant
-        $consumer_key 		= env('PESA_KEY');
-        $consumer_secret 	= env('PESA_SECRET');
+        $consumer_key 		= config('laravel_pesapal.consumer_key');
+        $consumer_secret 	= config('laravel_pesapal.consumer_key');
 
         $this->signature_method			= new OAuthSignatureMethod_HMAC_SHA1();
         $this->consumer 				= new OAuthConsumer($consumer_key, $consumer_secret);

@@ -20,8 +20,8 @@ class TransactionController extends Controller
     {
         //pesapal params
         $token = $params = NULL;
-        $consumer_key 		= config('laravel_pesapal.merchant_key');
-        $consumer_secret 	= config('laravel_pesapal.merchant_secret');
+        $consumer_key 		= config('laravel_pesapal.consumer_key');//when deploying to a repository change this to env('PESAPAL_KEY') for safety
+        $consumer_secret 	= config('laravel_pesapal.consumer_secret');//when deploying to a repository change this to env('PESAPAL_SECRET')
 
         $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
 
@@ -35,7 +35,7 @@ class TransactionController extends Controller
         }
 
         //get form details
-        $amount = number_format($request->amount, 2);
+        $amount = intval(number_format($request->amount, 0));
         $currency = $request->currency;
         $desc = $request->description;
         $type = $request->type;

@@ -14,22 +14,26 @@ return [
     'send_ipn_notifications_to' => 'your@email.com',
     /*
     |--------------------------------------------------------------------------
-    | Pesapal Merchant Key
+    | Pesapal Consumer Key
     |--------------------------------------------------------------------------
     |
     | The key obtained after creating your pesapal demo or live account
+    | When committing this to a repository, remove the default value
+    | and put it into your online PESAPAL_KEY config variable
     |
     */
-    'merchant_key' => env('PESAPAL_MERCHANT', ''),
+    'consumer_key' => env('PESAPAL_KEY', 't2zptdhOPAFK4+b0kw6sLOtonSuHe1Jn'),
     /*
    |--------------------------------------------------------------------------
-   | Pesapal Merchant Secret
+   | Pesapal Consumer Secret
    |--------------------------------------------------------------------------
    |
    | The secret key obtained after creating your pesapal demo or live account
+   | When committing this to a repository, remove the default value and
+   | put it into your online PESAPAL_SECRET configuration variable
    |
    */
-    'merchant_secret' => env('PESAPAL_SECRET', ''),
+    'consumer_secret' => env('PESAPAL_SECRET', 'biRknbwdrpn4b71/dS1c3VQXdEw='),
     /*
    |--------------------------------------------------------------------------
    | Pesapal Account Type
@@ -39,7 +43,7 @@ return [
    | 'false' if your account was obtained from https://demo.pesapal.com
    |
    */
-    'is_live' => '',
+    'is_live' => 'false',
     /*
    |--------------------------------------------------------------------------
    | Callback URL
@@ -49,6 +53,6 @@ return [
    | Make sure you edit this value according to your project needs
    |
    */
-    'callback_url' => 'https://www.yourSite.com/callback',
+    'callback_url' => 'http://localhost:1234/callback',
 
 ];

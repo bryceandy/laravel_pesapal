@@ -10,8 +10,5 @@ Route::group(['namespace' => 'Bryceandy\Laravel_Pesapal\Http\Controllers'], func
 
 });
 
-Route::get('ipn', function(){
-    return view ('laravel_pesapal::ipn');
-});
 
 

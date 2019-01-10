@@ -1,5 +1,7 @@
 <?php
 
+namespace Bryceandy\Laravel_Pesapal\asset;
+
 use Bryceandy\Laravel_Pesapal\Pesapal\pesapalCheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
 
