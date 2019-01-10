@@ -22,7 +22,7 @@ return [
     | and put it into your online PESAPAL_KEY config variable
     |
     */
-    'consumer_key' => env('PESAPAL_KEY', 't2zptdhOPAFK4+b0kw6sLOtonSuHe1Jn'),
+    'consumer_key' => env('PESAPAL_KEY', ''),
     /*
    |--------------------------------------------------------------------------
    | Pesapal Consumer Secret
@@ -33,7 +33,7 @@ return [
    | put it into your online PESAPAL_SECRET configuration variable
    |
    */
-    'consumer_secret' => env('PESAPAL_SECRET', 'biRknbwdrpn4b71/dS1c3VQXdEw='),
+    'consumer_secret' => env('PESAPAL_SECRET', ''),
     /*
    |--------------------------------------------------------------------------
    | Pesapal Account Type
@@ -43,16 +43,17 @@ return [
    | 'false' if your account was obtained from https://demo.pesapal.com
    |
    */
-    'is_live' => 'false',
+    'is_live' => '',
     /*
    |--------------------------------------------------------------------------
    | Callback URL
    |--------------------------------------------------------------------------
    |
-   | The page where you want your users to land making a transaction
-   | Make sure you edit this value according to your project needs
+   | The page where you want your users to land making a transaction. Make
+   | sure you edit this value according to your project. Everything will
+   | work correctly once you go live.
    |
    */
-    'callback_url' => 'http://localhost:1234/callback',
+    'callback_url' => 'http://localhost/callback',
 
 ];
