@@ -1,6 +1,6 @@
 # Pesapal API with Laravel 
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![](https://img.shields.io/github/issues/bryceandy/laravel_pesapal.svg?style=for-the-badge)](https://github.com/bryceandy/laravel_pesapal/issues) [![](https://img.shields.io/github/forks/bryceandy/laravel_pesapal.svg?style=for-the-badge)](https://github.com/bryceandy/laravel_pesapal/network/members) [![](https://img.shields.io/github/stars/bryceandy/laravel_pesapal.svg?style=for-the-badge)](https://github.com/bryceandy/laravel_pesapal/stargazers)
 
 ![Pesapal iFrame](images/iFrame.png)
 
