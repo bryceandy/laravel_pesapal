@@ -20,7 +20,7 @@ class TransactionController extends Controller
     {
         //pesapal params
         $token = $params = NULL;
-        $consumer_key 		= env('PESAPAL_KEY'); 
+        $consumer_key 		= env('PESAPAL_KEY');
         $consumer_secret 	= env('PESAPAL_SECRET');
 
         $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
