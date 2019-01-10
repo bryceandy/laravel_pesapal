@@ -20,8 +20,8 @@ class TransactionController extends Controller
     {
         //pesapal params
         $token = $params = NULL;
-        $consumer_key 		= config('laravel_pesapal.consumer_key');//when deploying to a repository change this to env('PESAPAL_KEY') for safety
-        $consumer_secret 	= config('laravel_pesapal.consumer_secret');//when deploying to a repository change this to env('PESAPAL_SECRET')
+        $consumer_key 		= env('PESAPAL_KEY'); 
+        $consumer_secret 	= env('PESAPAL_SECRET');
 
         $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
 
