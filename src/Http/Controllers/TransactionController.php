@@ -91,8 +91,10 @@ class TransactionController extends Controller
         if(isset($_GET['pesapal_transaction_tracking_id']))
             $pesapalTrackingId = $_GET['pesapal_transaction_tracking_id'];
 
+        //obtaining the payment status after a payment
         $status = $checkStatus->checkStatusUsingTrackingIdandMerchantRef($pesapalMerchantReference,$pesapalTrackingId);
 
+        //display the reference and payment status on the callback page
         return view ('laravel_pesapal::callback_example', compact('pesapalMerchantReference', 'status'));
     }
 }

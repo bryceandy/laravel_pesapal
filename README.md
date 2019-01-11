@@ -69,13 +69,13 @@ $ php artisan migrate
  
 ##### N B: You are not supposed to create any of these roots as they are configured for you.
 
-The ```details.blade.php``` view will display payment details where the user will put their details. Its route is a GET request to yourSite.com/details
+  - The ```details.blade.php``` view will display payment details where the user will put their details. Its route is a GET request to yourSite.com/details
 
-The ```iframe.blade.php``` view will display payment options as seen in the first image above. Its route is a POST request to yourSite.com/iframe
+  - The ```iframe.blade.php``` view will display payment options as seen in the first image above. Its route is a POST request to yourSite.com/iframe
 
-The ```callback_example.blade.php``` is the view your users will land to after making a payment, it will also show the payment status for every transaction. Its route is a GET request to yourSite.com/callback
+  - The ```callback_example.blade.php``` is the view your users will land to after making a payment, it will also show the payment status for every transaction. Its route is a GET request to yourSite.com/callback
 
-Head over to [demo](demo.pesapal.com) if you want a testing environment or [live](www.pesapal.com) for a live integration and create a business account. You will obtain a key-secret pair for your integration
+Head over to [demo](https://demo.pesapal.com) if you want a testing environment or [live](https://www.pesapal.com) for a live integration and create a business account. You will obtain a key-secret pair for your integration
 
 ![Pesapal Registration](images/register.png)
 
@@ -93,7 +93,10 @@ Especially for live accounts, on your pesapal dashboard find your Account Settin
 
 Lastly modify config/pesapal.php and set true if you have a live account, false if otherwise. Add your callback URL, dont touch the consumer key or secret and lastly write the email you wish to receive IPN notifications.
 
-**Go ahead and start making payments!**
+**Go ahead and start making payments!** Visit **YourSite'sDomain/details**
+
+
+i.e localhost/details or myAwesomeWebsite.com/details
 
 License
 ----

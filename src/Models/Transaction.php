@@ -18,6 +18,7 @@ class Transaction extends Model
         return $this->hasOne(User::class);
     }
 
+    //adds a user first if they are not in the users table then adds transaction details
     public static function make($first_name, $last_name, $email, $amount, $currency, $desc, $reference, $phonenumber)
     {
         $userExists = User::whereEmail('$email')->first();
@@ -50,6 +51,7 @@ class Transaction extends Model
         $pesapalMerchantReference	= $transaction['pesapal_merchant_reference'];
         $pesapalTrackingId 			= $transaction['pesapal_transaction_tracking_id'];
 
+        //payment status will always detect a change and send you notifications by IPN
         $update = Transaction::whereReference($pesapalMerchantReference)->first();
         $update->update([
             'status' => $status,

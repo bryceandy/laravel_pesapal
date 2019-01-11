@@ -21,6 +21,7 @@
 
 <h1>Payment Details Form</h1>
 
+{{--Feel free to modify the layout and overall style but let the form function as it is supposed to be--}}
 <form action="/iframe" method="post">
     {{csrf_field()}}
 

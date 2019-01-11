@@ -22,7 +22,7 @@ return [
     | and put it into your online PESAPAL_KEY config variable
     |
     */
-    'consumer_key' => env('PESAPAL_KEY', ''),
+    'consumer_key' => env('PESAPAL_KEY'),
     /*
    |--------------------------------------------------------------------------
    | Pesapal Consumer Secret
@@ -33,7 +33,7 @@ return [
    | put it into your online PESAPAL_SECRET configuration variable
    |
    */
-    'consumer_secret' => env('PESAPAL_SECRET', ''),
+    'consumer_secret' => env('PESAPAL_SECRET'),
     /*
    |--------------------------------------------------------------------------
    | Pesapal Account Type

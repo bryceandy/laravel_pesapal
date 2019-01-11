@@ -19,6 +19,7 @@
     <h1>Status of Payment</h1>
 
     <ul>
+        {{--the status change will happen only if you put your IPN settings on the dashboard--}}
         <li>Your payment status is currently {{$status}}</li>
         <li>The merchant reference is {{$pesapalMerchantReference}}</li>
         <li><a href="/callback">REFRESH</a> to reveiew your current payment status!</li>
