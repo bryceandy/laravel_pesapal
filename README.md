@@ -89,7 +89,7 @@ PESAPAL_SECRET='yourConsumerSecret'
 
 ###### IMPORTANT
 
-Especially for live accounts, on your pesapal dashboard find your Account Settings and click IPN Settings. Fill in your website domain i.e ```yourWebsite.co.tz``` and IPN listener URL as ```yourWebsite.co.tz/pesapal.ipn.php```, whatever your website name is just add '/pesapal.ipn.php' infront of it.
+Especially for live accounts, on your pesapal dashboard find your Account Settings and click IPN Settings. Fill in your website domain i.e ```yourWebsite.co.tz``` and IPN listener URL as ```yourWebsite.co.tz/pesapal/ipn.php```, whatever your website name is just add '/pesapal/ipn.php' infront of it.
 
 Lastly modify config/pesapal.php and set true if you have a live account, false if otherwise. Add your callback URL, dont touch the consumer key or secret and lastly write the email you wish to receive IPN notifications.
 
