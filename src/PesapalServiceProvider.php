@@ -2,15 +2,12 @@
 
 namespace Bryceandy\Laravel_Pesapal;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class PesapalServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
-
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel_pesapal');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
@@ -24,14 +21,10 @@ class PesapalServiceProvider extends ServiceProvider
             __DIR__.'/assets' => public_path('pesapal')
 
         ]);
-
     }
 
     public function register()
     {
-
         $this->mergeConfigFrom(__DIR__.'/config/pesapal.php', 'laravel_pesapal');
-
     }
-
 }
