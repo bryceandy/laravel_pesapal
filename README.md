@@ -10,22 +10,22 @@ This package enables Laravel developers to easily make use of the [Pesapal](http
   - Visa
   - American Express
 
+### Version support  
+
+| Laravel version | Package version | Maintenance |
+| --- | --- | --- |
+| 5.7 - 6 | 1.0.0 - 1.0.1 | No longer maintained |
+| 7 | 2.0.0 | Actively maintained |
+
 ### Installation
 
 Pre-installation requirements
 
-  - A running  or newly installed Laravel 5.5 or above
-  - PHP 7.1.3 or above
-  - (optional) cURL extension installed
+  - A running  or newly installed Laravel 7.* or above
+  - PHP 7.4 or above
+  - cURL extension installed
 
-To install the cURL extension, in the project root's composer.json add the following line inside "require"
-```json
-"require": {
-        "ext-curl": "*"
-    }
-```
-
-Now onto your terminal, run the command...
+Now run the command...
 
 ```sh
 $ composer require bryceandy/laravel_pesapal
