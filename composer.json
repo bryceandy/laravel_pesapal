@@ -1,7 +1,6 @@
 {
     "name": "bryceandy/laravel_pesapal",
     "description": "An unofficial Pesapal API integration for Laravel. Multiple payment options including but not limited to M-Pesa, Tigo Pesa, Visa, Mastercard, American Express in Kenya, Tanzania & Uganda.",
-    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -9,11 +8,9 @@
             "email": "hello@bryceandy.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
-        "ext-curl": "*"
-    },
-    "require-dev": {
         "ext-curl": "*"
     },
     "autoload": {
@@ -23,7 +20,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bryceandy\\Laravel_Pesapal\\": "src/"
+            "Bryceandy\\Laravel_Pesapal\\Tests\\": "tests/"
         }
     },
     "extra": {
