@@ -1,8 +1,11 @@
-# Pesapal API with Laravel 
+# Pesapal package for Laravel apps  
 
-[![](https://img.shields.io/github/issues/bryceandy/laravel_pesapal.svg?style=for-the-badge)](https://github.com/bryceandy/laravel_pesapal/issues) [![](https://img.shields.io/github/forks/bryceandy/laravel_pesapal.svg?style=for-the-badge)](https://github.com/bryceandy/laravel_pesapal/network/members) [![](https://img.shields.io/github/stars/bryceandy/laravel_pesapal.svg?style=for-the-badge)](https://github.com/bryceandy/laravel_pesapal/stargazers)
+[![Actions Status](https://github.com/bryceandy/laravel_pesapal/workflows/Tests/badge.svg)](https://github.com/bryceandy/laravel_pesapal/actions) 
+<a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/license.svg" alt="License"></a>  
 
-![Pesapal iFrame](images/iFrame.png)
+![Pesapal iFrame](images/iFrame.png)  
 
 This package enables Laravel developers to easily make use of the [Pesapal](https://www.pesapal.com) API. There are M-Pesa, Tigo pesa payments popular with East African mobile money systems. Other payment integrations include, but not limited to: 
 
@@ -15,7 +18,7 @@ This package enables Laravel developers to easily make use of the [Pesapal](http
 | Laravel version | Package version | Maintenance |
 | --- | --- | --- |
 | 5.7 - 6 | 1.0.0 - 1.0.1 | No longer maintained |
-| 7 | 2.0.0 | Actively maintained |
+| 7 and above | 2.0.0 | Actively maintained |
 
 ### Installation
 
@@ -61,7 +64,7 @@ After it runs successfully, you must see the following:
   
 Now after modifying the models, migrations and controller if need be then it is necessary to migrate normally using 
 
-```sh
+```bash
 $ php artisan migrate
 ```
 
@@ -69,11 +72,11 @@ $ php artisan migrate
  
 ##### N B: You are not supposed to create any of these roots as they are configured for you.
 
-  - The ```details.blade.php``` view will display payment details where the user will put their details. Its route is a GET request to yourSite.com/details
+  - The `details.blade.php` view will display payment details where the user will put their details. Its route is a GET request to yourSite.com/details
 
-  - The ```iframe.blade.php``` view will display payment options as seen in the first image above. Its route is a POST request to yourSite.com/iframe
+  - The `iframe.blade.php` view will display payment options as seen in the first image above. Its route is a POST request to yourSite.com/iframe
 
-  - The ```callback_example.blade.php``` is the view your users will land to after making a payment, it will also show the payment status for every transaction. Its route is a GET request to yourSite.com/callback
+  - The `callback_example.blade.php` is the view your users will land to after making a payment, it will also show the payment status for every transaction. Its route is a GET request to yourSite.com/callback
 
 Head over to [demo](https://demo.pesapal.com) if you want a testing environment or [live](https://www.pesapal.com) for a live integration and create a business account. You will obtain a key-secret pair for your integration
 
@@ -82,7 +85,7 @@ Head over to [demo](https://demo.pesapal.com) if you want a testing environment 
 #### Setting configs
 
 Head over your project and create environment variables inside your ```.env``` such as
-```php
+```dotenv
 PESPAL_KEY='yourConsumerKey'
 PESAPAL_SECRET='yourConsumerSecret'
 ```
