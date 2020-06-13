@@ -19,8 +19,8 @@ class CheckStatus {
     protected OAuthConsumer $consumer;
 
     public function __construct(){
-        $this->token = null;
-        $this->params = null;
+        $this->token = NULL;
+        $this->params = NULL;
         $consumer_key = config('laravel_pesapal.consumer_key');
         $consumer_secret = config('laravel_pesapal.consumer_secret');
         $this->signature_method	= new OAuthSignatureMethod_HMAC_SHA1();
