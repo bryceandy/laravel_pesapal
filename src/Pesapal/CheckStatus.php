@@ -22,7 +22,7 @@ class CheckStatus {
         $this->token = null;
         $this->params = null;
         $consumer_key = config('laravel_pesapal.consumer_key');
-        $consumer_secret = config('laravel_pesapal.consumer_key');
+        $consumer_secret = config('laravel_pesapal.consumer_secret');
         $this->signature_method	= new OAuthSignatureMethod_HMAC_SHA1();
         $this->consumer = new OAuthConsumer($consumer_key, $consumer_secret);
 
