@@ -43,7 +43,7 @@ return [
    | 'false' if your account was obtained from https://demo.pesapal.com
    |
    */
-    'is_live' => '',
+    'is_live' => '',// TODO: Put a default value
     /*
    |--------------------------------------------------------------------------
    | Callback URL
