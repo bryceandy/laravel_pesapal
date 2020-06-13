@@ -2,12 +2,12 @@
 
 namespace Bryceandy\Laravel_Pesapal\assets;
 
-use Bryceandy\Laravel_Pesapal\Pesapal\pesapalCheckStatus;
+use Bryceandy\Laravel_Pesapal\Pesapal\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
 
 $pesapalTrackingId 			= null;
 $pesapalMerchantReference	= null;
-$checkStatus 				= new pesapalCheckStatus();
+$checkStatus 				= new CheckStatus();
 $pesapalNotification 		= null;
 
 if(isset($_GET['pesapal_merchant_reference']))
@@ -70,4 +70,3 @@ if($pesapalNotification=="CHANGE"){
     ob_flush();
     exit; //this is mandatory. If you dont exit, Pesapal will not get your response.
 }
-?>

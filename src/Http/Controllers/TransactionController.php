@@ -2,7 +2,7 @@
 namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Bryceandy\Laravel_Pesapal\Pesapal\pesapalCheckStatus;
+use Bryceandy\Laravel_Pesapal\Pesapal\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
 use Bryceandy\Laravel_Pesapal\Pesapal\OAuthSignatureMethod_HMAC_SHA1;
 use Bryceandy\Laravel_Pesapal\Pesapal\OAuthConsumer;
@@ -83,7 +83,7 @@ class TransactionController extends Controller
     {
         $pesapalMerchantReference	= null;
         $pesapalTrackingId 		    = null;
-        $checkStatus 				= new pesapalCheckStatus();
+        $checkStatus 				= new CheckStatus();
 
         if(isset($_GET['pesapal_merchant_reference']))
             $pesapalMerchantReference = $_GET['pesapal_merchant_reference'];
@@ -92,7 +92,7 @@ class TransactionController extends Controller
             $pesapalTrackingId = $_GET['pesapal_transaction_tracking_id'];
 
         //obtaining the payment status after a payment
-        $status = $checkStatus->checkStatusUsingTrackingIdandMerchantRef($pesapalMerchantReference,$pesapalTrackingId);
+        $status = $checkStatus->checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference,$pesapalTrackingId);
 
         //display the reference and payment status on the callback page
         return view ('laravel_pesapal::callback_example', compact('pesapalMerchantReference', 'status'));

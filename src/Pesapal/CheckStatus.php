@@ -2,38 +2,37 @@
 
 namespace Bryceandy\Laravel_Pesapal\Pesapal;
 
-
-class pesapalCheckStatus {
+class CheckStatus {
 
     var $token;
-    var $params;
-    var $signature_method;
 
-    var $QueryPaymentStatus;
-    var $QueryPaymentStatusByMerchantRef;
-    var $querypaymentdetails;
+    var $params;
+
+    public OAuthSignatureMethod_HMAC_SHA1 $signature_method;
+
+    public string $QueryPaymentStatus;
+
+    public string $QueryPaymentStatusByMerchantRef;
+
+    public string $querypaymentdetails;
+
+    protected OAuthConsumer $consumer;
 
     public function __construct(){
+        $this->token = $this->params = NULL;
+        $consumer_key = config('laravel_pesapal.consumer_key');
+        $consumer_secret = config('laravel_pesapal.consumer_key');
+        $this->signature_method	= new OAuthSignatureMethod_HMAC_SHA1();
+        $this->consumer = new OAuthConsumer($consumer_key, $consumer_secret);
 
-        $this->token = $this->params	= NULL;
-        $consumer_key 		= config('laravel_pesapal.consumer_key');
-        $consumer_secret 	= config('laravel_pesapal.consumer_key');
-
-        $this->signature_method			= new OAuthSignatureMethod_HMAC_SHA1();
-        $this->consumer 				= new OAuthConsumer($consumer_key, $consumer_secret);
-
-        $isDemo =false;  // i confirm the key above belong to a DEMO merchant
-        if($isDemo)
-            $api = 'https://demo.pesapal.com';
-        else
-            $api = 'https://www.pesapal.com';
+        $api = config('laravel_pesapal.is_live') ? 'https://demo.pesapal.com' : 'https://www.pesapal.com';
 
         $this->QueryPaymentStatus 				= 	$api.'/API/QueryPaymentStatus';
         $this->QueryPaymentStatusByMerchantRef	= 	$api.'/API/QueryPaymentStatusByMerchantRef';
         $this->querypaymentdetails 				= 	$api.'/API/querypaymentdetails';
     }
 
-    function checkStatusUsingTrackingIdandMerchantRef($pesapalMerchantReference,$pesapalTrackingId){
+    function checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference,$pesapalTrackingId){
 
         //get transaction status
         $request_status = OAuthRequest::from_consumer_and_token(
@@ -43,13 +42,12 @@ class pesapalCheckStatus {
             $this->QueryPaymentStatus,
             $this->params
         );
+
         $request_status->set_parameter("pesapal_merchant_reference", $pesapalMerchantReference);
         $request_status->set_parameter("pesapal_transaction_tracking_id",$pesapalTrackingId);
         $request_status->sign_request($this->signature_method, $this->consumer, $this->token);
 
-        $status = $this->curlRequest($request_status);
-
-        return $status;
+        return $this->curlRequest($request_status);
     }
 
     function getTransactionDetails($pesapalMerchantReference,$pesapalTrackingId){
@@ -61,6 +59,7 @@ class pesapalCheckStatus {
             $this->querypaymentdetails,
             $this->params
         );
+
         $request_status->set_parameter("pesapal_merchant_reference", $pesapalMerchantReference);
         $request_status->set_parameter("pesapal_transaction_tracking_id",$pesapalTrackingId);
         $request_status->sign_request($this->signature_method, $this->consumer, $this->token);
@@ -68,13 +67,14 @@ class pesapalCheckStatus {
         $responseData = $this->curlRequest($request_status);
 
         $pesapalResponse = explode(",", $responseData);
-        $pesapalResponseArray=array('pesapal_transaction_tracking_id'=>$pesapalResponse[0],
+
+        return array(
+            'pesapal_transaction_tracking_id'=>$pesapalResponse[0],
             'payment_method'=>$pesapalResponse[1],
             'status'=>$pesapalResponse[2],
             'pesapal_merchant_reference'=>$pesapalResponse[3]);
-
-        return $pesapalResponseArray;
     }
+
     function checkStatusByMerchantRef($pesapalMerchantReference){
 
         $request_status = OAuthRequest::from_consumer_and_token(
@@ -84,12 +84,11 @@ class pesapalCheckStatus {
             $this->QueryPaymentStatusByMerchantRef,
             $this->params
         );
+
         $request_status->set_parameter("pesapal_merchant_reference", $pesapalMerchantReference);
         $request_status->sign_request($this->signature_method, $this->consumer, $this->token);
 
-        $status = $this->curlRequest($request_status);
-
-        return $status;
+        return $this->curlRequest($request_status);
     }
 
     function curlRequest($request_status){
@@ -117,9 +116,7 @@ class pesapalCheckStatus {
 
         //transaction status
         $elements = preg_split("/=/",substr($response, $header_size));
-        $pesapal_response_data = $elements[1];
 
-        return $pesapal_response_data;
+        return $elements[1];
     }
 }
-?>
