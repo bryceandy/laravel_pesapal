@@ -53,9 +53,8 @@ return [
    | Callback URL
    |--------------------------------------------------------------------------
    |
-   | The page where you want your users to land making a transaction. Make
-   | sure you edit this value according to your project. Everything will
-   | work correctly once you go live.
+   | This is the full url pointing to the page that the iframe
+   | redirects to after processing the order on pesapal.com
    |
    */
     'callback_url' => env('PESAPAL_CALLBACK_URL'),
