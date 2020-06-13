@@ -71,23 +71,28 @@ Head over to [demo](https://demo.pesapal.com) if you want a testing environment 
 
 ![Pesapal Registration](images/register.png)  
 
-#### Setting configs  
+#### Configurations  
 
 Head over your project and create environment variables inside your `.env` such as  
 
 ```dotenv
-PESPAL_KEY='yourConsumerKey'
-PESAPAL_SECRET='yourConsumerSecret'
+PESPAL_KEY=yourConsumerKey
+PESAPAL_SECRET=yourConsumerSecret
+PESAPAL_IS_LIVE=false
+PESAPAL_CALLBACK_URL=http://yourSite.com/callback
+PESAPAL_IPN_EMAIL=emailReceivingIpnNotifications
 ```  
+
+Modify the env variable and set `PESAPAL_IS_LIVE` to true if you have a live account, false is the default.  
+
+Add your callback URL `PESPAL_CALLBACK_URL`, lastly set `PESAPAL_IPN_EMAIL` to the email you wish to receive IPN notifications.  
+
 
 ###### IMPORTANT  
 
-Especially for live accounts, on your pesapal dashboard find your Account Settings and click IPN Settings. Fill in your website domain i.e `yourWebsite.co.tz` and IPN listener URL as `yourWebsite.co.tz/pesapal/ipn.php`, whatever your website name is just add '/pesapal/ipn.php' infront of it.  
+Especially for live accounts, on your pesapal dashboard find your Account Settings and click IPN Settings. Fill in your website domain i.e `yourWebsite.co.tz` and IPN listener URL as `yourWebsite.co.tz/pesapal/ipn.php`, whatever your website name is just add '/pesapal/ipn.php' infront of it.   
 
-Lastly modify config/pesapal.php and set true if you have a live account, false if otherwise. Add your callback URL, dont touch the consumer key or secret and lastly write the email you wish to receive IPN notifications.  
-
-**Go ahead and start making payments!** Visit **YourSite'sDomain/details**  
-
+**Go ahead and start making payments!**. Visit **YourSite'sDomain/details**  
 
 i.e localhost/details or myAwesomeWebsite.com/details  
 

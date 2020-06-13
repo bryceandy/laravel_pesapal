@@ -39,7 +39,7 @@ $message .= '<b>Database update: </b>'.$dbupdated.'<br> ';
 $headers = 'From: ipntester@pesapal.com' . "\r\n";
 $headers .= 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n".
-    'Reply-To: '.config('laravel_pesapal.send_ipn_notifications_to') . "\r\n" .
+    'Reply-To: '.config('laravel_pesapal.ipn_notifications_email') . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to, $subject, $message, $headers);
@@ -56,7 +56,7 @@ if($pesapalNotification=="CHANGE"){
     $headers = 'From: ipntester@pesapal.com' . "\r\n";
     $headers .= 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n".
-        'Reply-To: '.config('laravel_pesapal.send_ipn_notifications_to') . "\r\n" .
+        'Reply-To: '.config('laravel_pesapal.ipn_notifications_email') . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
     mail($to, $subject, $message, $headers);

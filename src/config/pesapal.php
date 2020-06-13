@@ -4,16 +4,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | IPN Notifications Email
-    |--------------------------------------------------------------------------
-    |
-    | This is the email through which Pesapal will send notifications indicating
-    | whether payments are still pending, completed, invalid, or rather failed
-    |
-    */
-    'send_ipn_notifications_to' => 'your@email.com',
-    /*
-    |--------------------------------------------------------------------------
     | Pesapal Consumer Key
     |--------------------------------------------------------------------------
     |
@@ -23,6 +13,7 @@ return [
     |
     */
     'consumer_key' => env('PESAPAL_KEY'),
+
     /*
    |--------------------------------------------------------------------------
    | Pesapal Consumer Secret
@@ -34,6 +25,7 @@ return [
    |
    */
     'consumer_secret' => env('PESAPAL_SECRET'),
+
     /*
    |--------------------------------------------------------------------------
    | Pesapal Account Type
@@ -43,7 +35,19 @@ return [
    | false if your account was obtained from https://demo.pesapal.com
    |
    */
-    'is_live' => false,
+    'is_live' => env('PESAPAL_IS_LIVE', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | IPN Notifications Email
+    |--------------------------------------------------------------------------
+    |
+    | This is the email through which Pesapal will send notifications indicating
+    | whether payments are still pending, completed, invalid, or rather failed
+    |
+    */
+    'ipn_notifications_email' => env('PESAPAL_IPN_EMAIL'),
+
     /*
    |--------------------------------------------------------------------------
    | Callback URL
@@ -54,6 +58,5 @@ return [
    | work correctly once you go live.
    |
    */
-    'callback_url' => 'http://yourSite.com/callback',
-
+    'callback_url' => env('PESAPAL_CALLBACK_URL'),
 ];
