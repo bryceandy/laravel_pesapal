@@ -8,18 +8,19 @@ class CheckStatus {
 
     var $params;
 
-    public OAuthSignatureMethod_HMAC_SHA1 $signature_method;
+    protected OAuthSignatureMethod_HMAC_SHA1 $signature_method;
 
-    public string $QueryPaymentStatus;
+    protected string $QueryPaymentStatus;
 
-    public string $QueryPaymentStatusByMerchantRef;
+    protected string $QueryPaymentStatusByMerchantRef;
 
-    public string $querypaymentdetails;
+    protected string $querypaymentdetails;
 
     protected OAuthConsumer $consumer;
 
     public function __construct(){
-        $this->token = $this->params = NULL;
+        $this->token = null;
+        $this->params = null;
         $consumer_key = config('laravel_pesapal.consumer_key');
         $consumer_secret = config('laravel_pesapal.consumer_key');
         $this->signature_method	= new OAuthSignatureMethod_HMAC_SHA1();
