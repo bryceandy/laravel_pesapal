@@ -32,8 +32,8 @@ class CheckStatus {
         $this->querypaymentdetails 				= 	$api.'/API/querypaymentdetails';
     }
 
-    function checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference,$pesapalTrackingId){
-
+    public function checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference, $pesapalTrackingId)
+    {
         //get transaction status
         $request_status = OAuthRequest::from_consumer_and_token(
             $this->consumer,
@@ -50,8 +50,8 @@ class CheckStatus {
         return $this->curlRequest($request_status);
     }
 
-    function getTransactionDetails($pesapalMerchantReference,$pesapalTrackingId){
-
+    public function getTransactionDetails($pesapalMerchantReference, $pesapalTrackingId)
+    {
         $request_status = OAuthRequest::from_consumer_and_token(
             $this->consumer,
             $this->token,
@@ -68,14 +68,15 @@ class CheckStatus {
 
         $pesapalResponse = explode(",", $responseData);
 
-        return array(
-            'pesapal_transaction_tracking_id'=>$pesapalResponse[0],
-            'payment_method'=>$pesapalResponse[1],
-            'status'=>$pesapalResponse[2],
-            'pesapal_merchant_reference'=>$pesapalResponse[3]);
+        return [
+            'pesapal_transaction_tracking_id' => $pesapalResponse[0],
+            'payment_method' => $pesapalResponse[1],
+            'status' => $pesapalResponse[2],
+            'pesapal_merchant_reference' => $pesapalResponse[3],
+        ];
     }
 
-    function checkStatusByMerchantRef($pesapalMerchantReference){
+    public function checkStatusByMerchantRef($pesapalMerchantReference){
 
         $request_status = OAuthRequest::from_consumer_and_token(
             $this->consumer,
@@ -91,13 +92,14 @@ class CheckStatus {
         return $this->curlRequest($request_status);
     }
 
-    function curlRequest($request_status){
-
+    public function curlRequest($request_status)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $request_status);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         if(defined('CURL_PROXY_REQUIRED')) if (CURL_PROXY_REQUIRED == 'True'){
             $proxy_tunnel_flag = (
                 defined('CURL_PROXY_TUNNEL_FLAG')
