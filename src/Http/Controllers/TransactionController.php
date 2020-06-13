@@ -24,15 +24,9 @@ class TransactionController extends Controller
         $consumer_secret 	= env('PESAPAL_SECRET');
 
         $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
-
-        if(config('laravel_pesapal.is_key') == 'true')
-        {
-            $iframelink = 'https://www.pesapal.com/api/PostPesapalDirectOrderV4';
-        }
-        else
-        {
-            $iframelink = 'https://demo.pesapal.com/api/PostPesapalDirectOrderV4';
-        }
+        $iframelink = config('laravel_pesapal.is_key') ?
+            'https://www.pesapal.com/api/PostPesapalDirectOrderV4' :
+            'https://demo.pesapal.com/api/PostPesapalDirectOrderV4';
 
         //get form details
         $amount = intval(number_format($request->amount, 0));

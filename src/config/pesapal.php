@@ -39,11 +39,11 @@ return [
    | Pesapal Account Type
    |--------------------------------------------------------------------------
    |
-   | 'true' if your account was obtained from https://www.pesapal.com and
-   | 'false' if your account was obtained from https://demo.pesapal.com
+   | true if your account was obtained from https://www.pesapal.com and
+   | false if your account was obtained from https://demo.pesapal.com
    |
    */
-    'is_live' => '',// TODO: Put a default value
+    'is_live' => false,
     /*
    |--------------------------------------------------------------------------
    | Callback URL
