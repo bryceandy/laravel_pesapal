@@ -10,17 +10,16 @@ class CheckStatus {
 
     protected OAuthSignatureMethod_HMAC_SHA1 $signature_method;
 
-    protected string $QueryPaymentStatus;
+    protected string $queryPaymentStatus;
 
-    protected string $QueryPaymentStatusByMerchantRef;
+    protected string $queryPaymentStatusByMerchantRef;
 
     protected string $querypaymentdetails;
 
     protected OAuthConsumer $consumer;
 
     public function __construct(){
-        $this->token = NULL;
-        $this->params = NULL;
+        $this->token = $this->params = NULL;
         $consumer_key = config('laravel_pesapal.consumer_key');
         $consumer_secret = config('laravel_pesapal.consumer_secret');
         $this->signature_method	= new OAuthSignatureMethod_HMAC_SHA1();
@@ -28,19 +27,19 @@ class CheckStatus {
 
         $api = config('laravel_pesapal.is_live') ? 'https://demo.pesapal.com' : 'https://www.pesapal.com';
 
-        $this->QueryPaymentStatus 				= 	$api.'/API/QueryPaymentStatus';
-        $this->QueryPaymentStatusByMerchantRef	= 	$api.'/API/QueryPaymentStatusByMerchantRef';
+        $this->queryPaymentStatus 				= 	$api.'/API/querypaymentstatus';
+        $this->queryPaymentStatusByMerchantRef	= 	$api.'/API/queryPaymentStatusByMerchantRef';
         $this->querypaymentdetails 				= 	$api.'/API/querypaymentdetails';
     }
 
-    public function checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference, $pesapalTrackingId)
+    public function byTrackingIdAndMerchantRef($pesapalMerchantReference, $pesapalTrackingId)
     {
         //get transaction status
         $request_status = OAuthRequest::from_consumer_and_token(
             $this->consumer,
             $this->token,
             "GET",
-            $this->QueryPaymentStatus,
+            $this->queryPaymentStatus,
             $this->params
         );
 
@@ -83,7 +82,7 @@ class CheckStatus {
             $this->consumer,
             $this->token,
             "GET",
-            $this->QueryPaymentStatusByMerchantRef,
+            $this->queryPaymentStatusByMerchantRef,
             $this->params
         );
 
@@ -120,6 +119,7 @@ class CheckStatus {
         //transaction status
         $elements = preg_split("/=/",substr($response, $header_size));
 
+        curl_close($ch);
         return $elements[1];
     }
 }
