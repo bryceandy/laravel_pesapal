@@ -52,8 +52,9 @@ class Transaction extends Model
         $pesapalTrackingId 			= $transaction['pesapal_transaction_tracking_id'];
 
         //payment status will always detect a change and send you notifications by IPN
-        $update = Transaction::whereReference($pesapalMerchantReference)->first();
-        $update->update([
+        $transaction = Transaction::whereReference($pesapalMerchantReference)->first();
+
+        return $transaction->update([
             'status' => $status,
             'payment_method' => $payment_method,
             'tracking_id' => $pesapalTrackingId
