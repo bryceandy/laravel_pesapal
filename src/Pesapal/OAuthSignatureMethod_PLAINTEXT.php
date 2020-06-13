@@ -2,23 +2,22 @@
 
 namespace Bryceandy\Laravel_Pesapal\Pesapal;
 
-
 class OAuthSignatureMethod_PLAINTEXT extends OAuthSignatureMethod
 {
-    public function get_name() {
+    public function get_name()
+    {
         return "PLAINTEXT";
     }
 
-    public function build_signature($request, $consumer, $token) {
+    public function build_signature($request, $consumer, $token)
+    {
         $sig = array(
             OAuthUtil::urlencode_rfc3986($consumer->secret)
         );
 
-        if ($token) {
-            array_push($sig, OAuthUtil::urlencode_rfc3986($token->secret));
-        } else {
+        $token ?
+            array_push($sig, OAuthUtil::urlencode_rfc3986($token->secret)) :
             array_push($sig, '');
-        }
 
         $raw = implode("&", $sig);
         // for debug purposes
@@ -26,5 +25,4 @@ class OAuthSignatureMethod_PLAINTEXT extends OAuthSignatureMethod
 
         return OAuthUtil::urlencode_rfc3986($raw);
     }
-
 }
