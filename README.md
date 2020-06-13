@@ -36,18 +36,7 @@ composer require bryceandy/laravel_pesapal
 
 ### Files and Configuration  
 
-After it has finished downloading the files, inside your config/app.php file add the following line in the providers array  
-
-```php
-'providers' => [
-    /*
-     * Application Service Providers...
-     */
-    Bryceandy\Laravel_Pesapal\PesapalServiceProvider::class,
-]
-```  
-
-Next we publish the files onto our project using the command  
+Next we publish files using a service provider in our project using the command  
 
 ```bash
 php artisan vendor:publish --provider="Bryceandy\Laravel_Pesapal\PesapalServiceProvider"
