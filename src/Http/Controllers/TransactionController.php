@@ -81,18 +81,17 @@ class TransactionController extends Controller
 
     public function callback()
     {
-        $pesapalMerchantReference	= null;
-        $pesapalTrackingId 		    = null;
-        $checkStatus 				= new CheckStatus();
+        $checkStatus = new CheckStatus();
 
-        if(isset($_GET['pesapal_merchant_reference']))
-            $pesapalMerchantReference = $_GET['pesapal_merchant_reference'];
+        $pesapalMerchantReference = isset($_GET['pesapal_merchant_reference']) ?
+            $_GET['pesapal_merchant_reference'] : null;
 
-        if(isset($_GET['pesapal_transaction_tracking_id']))
-            $pesapalTrackingId = $_GET['pesapal_transaction_tracking_id'];
+        $pesapalTrackingId = isset($_GET['pesapal_transaction_tracking_id']) ?
+            $_GET['pesapal_transaction_tracking_id'] : null;
 
         //obtaining the payment status after a payment
-        $status = $checkStatus->checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference,$pesapalTrackingId);
+        $status = $checkStatus
+            ->checkStatusUsingTrackingIdAndMerchantRef($pesapalMerchantReference,$pesapalTrackingId);
 
         //display the reference and payment status on the callback page
         return view ('laravel_pesapal::callback_example', compact('pesapalMerchantReference', 'status'));
