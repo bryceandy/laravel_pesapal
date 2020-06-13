@@ -2,13 +2,13 @@
 
 namespace Bryceandy\Laravel_Pesapal\Pesapal;
 
-
 class OAuthConsumer
 {
-    public $key;
-    public $secret;
+    public string $key;
+    public string $secret;
+    public string $callback_url;
 
-    function __construct($key, $secret, $callback_url=NULL) {
+    function __construct($key, $secret, $callback_url = NULL) {
         $this->key = $key;
         $this->secret = $secret;
         $this->callback_url = $callback_url;
@@ -17,5 +17,4 @@ class OAuthConsumer
     function __toString() {
         return "OAuthConsumer[key=$this->key,secret=$this->secret]";
     }
-
 }
