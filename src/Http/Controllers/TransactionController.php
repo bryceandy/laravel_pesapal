@@ -24,7 +24,7 @@ class TransactionController extends Controller
         $consumer_secret 	= env('PESAPAL_SECRET');
 
         $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
-        $iframelink = config('laravel_pesapal.is_key') ?
+        $iframelink = config('laravel_pesapal.is_live') ?
             'https://www.pesapal.com/api/PostPesapalDirectOrderV4' :
             'https://demo.pesapal.com/api/PostPesapalDirectOrderV4';
 
