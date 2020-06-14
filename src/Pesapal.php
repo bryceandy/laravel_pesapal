@@ -2,9 +2,9 @@
 
 namespace Bryceandy\Laravel_Pesapal;
 
-use Bryceandy\Laravel_Pesapal\Pesapal\OAuthConsumer;
-use Bryceandy\Laravel_Pesapal\Pesapal\OAuthRequest;
-use Bryceandy\Laravel_Pesapal\Pesapal\OAuthSignatureMethod_HMAC_SHA1;
+use Bryceandy\Laravel_Pesapal\OAuth\OAuthConsumer;
+use Bryceandy\Laravel_Pesapal\OAuth\OAuthRequest;
+use Bryceandy\Laravel_Pesapal\OAuth\OAuthSignatureMethod_HMAC_SHA1;
 
 class Pesapal
 {

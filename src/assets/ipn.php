@@ -1,6 +1,6 @@
 <?php
 
-use Bryceandy\Laravel_Pesapal\Pesapal\CheckStatus;
+use Bryceandy\Laravel_Pesapal\OAuth\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
 
 $checkStatus = new CheckStatus();

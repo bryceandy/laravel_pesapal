@@ -1,6 +1,6 @@
 <?php
 
-namespace Bryceandy\Laravel_Pesapal\Pesapal;
+namespace Bryceandy\Laravel_Pesapal\OAuth;
 
 class OAuthConsumer
 {
