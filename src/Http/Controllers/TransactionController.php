@@ -10,12 +10,7 @@ use Illuminate\Http\Request;
 
 class TransactionController
 {
-    public function details()
-    {
-        return view ('laravel_pesapal::details');
-    }
-
-    public function payment(Request $request)
+    public function store(Request $request)
     {
         //pesapal params
         $token = $params = NULL;
