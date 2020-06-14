@@ -1,7 +1,6 @@
 <?php
 namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Bryceandy\Laravel_Pesapal\Pesapal\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
 use Bryceandy\Laravel_Pesapal\Pesapal\OAuthSignatureMethod_HMAC_SHA1;
@@ -9,7 +8,7 @@ use Bryceandy\Laravel_Pesapal\Pesapal\OAuthConsumer;
 use Bryceandy\Laravel_Pesapal\Pesapal\OAuthRequest;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class TransactionController
 {
     public function details()
     {
