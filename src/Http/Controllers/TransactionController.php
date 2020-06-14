@@ -1,7 +1,7 @@
 <?php
 namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
-use Bryceandy\Laravel_Pesapal\Pesapal;
+use Bryceandy\Laravel_Pesapal\Facades\Pesapal;
 use Bryceandy\Laravel_Pesapal\Pesapal\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
 use Illuminate\Contracts\View\Factory;
