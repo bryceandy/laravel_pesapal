@@ -1,55 +1,52 @@
 <?php
 namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
+use Bryceandy\Laravel_Pesapal\Pesapal;
 use Bryceandy\Laravel_Pesapal\Pesapal\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Models\Transaction;
-use Bryceandy\Laravel_Pesapal\Pesapal\OAuthSignatureMethod_HMAC_SHA1;
-use Bryceandy\Laravel_Pesapal\Pesapal\OAuthConsumer;
-use Bryceandy\Laravel_Pesapal\Pesapal\OAuthRequest;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\View\View;
 
 class TransactionController
 {
+    protected ValidationFactory $validation;
+
+    /**
+     * TransactionController constructor.
+     *
+     * @param ValidationFactory $validation
+     */
+    public function __construct(ValidationFactory $validation)
+    {
+        $this->validation = $validation;
+    }
+
+    /**
+     * Stores a new transaction, post it to pesapal and
+     * displays the iframe where payment options are
+     *
+     * @param Request $request
+     * @return Factory|View
+     */
     public function store(Request $request)
     {
-        //pesapal params
-        $token = $params = NULL;
-        $consumer_key 		= env('PESAPAL_KEY');
-        $consumer_secret 	= env('PESAPAL_SECRET');
+        $this->validation->make($request->all(), [
+            'amount' => '',
+            'currency' => '',
+            'description' => '',
+            'type' => '',
+            'reference' => '',
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'phone_number' => '',
+        ])->validate();
 
-        $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
-        $iframelink = config('laravel_pesapal.is_live') ?
-            'https://www.pesapal.com/api/PostPesapalDirectOrderV4' :
-            'https://demo.pesapal.com/api/PostPesapalDirectOrderV4';
+        Transaction::record($request);
 
-        //get form details
-        $amount = intval(number_format($request->amount, 0));
-        $currency = $request->currency;
-        $desc = $request->description;
-        $type = $request->type;
-        $reference = $request->reference;
-        $first_name = $request->first_name;
-        $last_name = $request->last_name;
-        $email = $request->email;
-        $phonenumber = $request->phone;
-
-        $callback_url = config('laravel_pesapal.callback_url');
-
-        //storing into the database
-        Transaction::make($first_name, $last_name, $email, $amount, $currency, $desc, $reference, $phonenumber);
-
-        /*Do not touch this xml variable in any way as it is the source of errors when you try
-        to be clever and add extra spaces inside it*/
-        $post_xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$currency."\" Amount=\"".$amount."\" Description=\"".$desc."\" Type=\"".$type."\" Reference=\"".$reference."\" FirstName=\"".$first_name."\" LastName=\"".$last_name."\" Email=\"".$email."\" PhoneNumber=\"".$phonenumber."\" xmlns=\"http://www.pesapal.com\" />";
-        $post_xml = htmlentities($post_xml);
-
-        $consumer = new OAuthConsumer($consumer_key, $consumer_secret);
-
-        //post transaction to pesapal
-        $iframe_src = OAuthRequest::from_consumer_and_token($consumer, $token, "GET", $iframelink, $params);
-        $iframe_src->set_parameter("oauth_callback", $callback_url);
-        $iframe_src->set_parameter("pesapal_request_data", $post_xml);
-        $iframe_src->sign_request($signature_method, $consumer, $token);
+        $iframe_src = Pesapal::getIframeSource($request);
 
         return view ('laravel_pesapal::iframe', compact('iframe_src'));
     }
