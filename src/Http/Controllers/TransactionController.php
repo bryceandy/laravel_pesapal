@@ -33,15 +33,15 @@ class TransactionController
     public function store(Request $request)
     {
         $this->validation->make($request->all(), [
-            'amount' => '',
-            'currency' => '',
-            'description' => '',
-            'type' => '',
-            'reference' => '',
-            'first_name' => '',
-            'last_name' => '',
-            'email' => '',
-            'phone_number' => '',
+            'amount' => 'required|numeric',
+            'currency' => 'required|in:TZS,KES,UGX,USD',
+            'description' => 'required|min:5',
+            'type' => 'required|in:MERCHANT',
+            'reference' => 'required',
+            'first_name' => 'present',
+            'last_name' => 'present',
+            'email' => 'required_without:phone_number|email',
+            'phone_number' => 'required_without:email|numeric',
         ])->validate();
 
         Transaction::record($request);
