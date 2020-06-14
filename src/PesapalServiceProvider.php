@@ -26,6 +26,8 @@ class PesapalServiceProvider extends ServiceProvider
      */
     private function registerResources()
     {
+        $this->app->singleton('Pesapal', fn($app) => new \Bryceandy\Laravel_Pesapal\Pesapal());
+
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel_pesapal');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
