@@ -46,20 +46,7 @@ class TransactionController extends Controller
 
         /*Do not touch this xml variable in any way as it is the source of errors when you try
         to be clever and add extra spaces inside it*/
-        $post_xml	= "<?xml version=\"1.0\" encoding=\"utf-8\"?>
-				   <PesapalDirectOrderInfo 
-						xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" 
-					  	xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" 
-					  	Currency=\"".$currency."\" 
-					  	Amount=\"".$amount."\" 
-					  	Description=\"".$desc."\" 
-					  	Type=\"".$type."\" 
-					  	Reference=\"".$reference."\" 
-					  	FirstName=\"".$first_name."\" 
-					  	LastName=\"".$last_name."\" 
-					  	Email=\"".$email."\" 
-					  	PhoneNumber=\"".$phonenumber."\" 
-					  	xmlns=\"http://www.pesapal.com\" />";
+        $post_xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$currency."\" Amount=\"".$amount."\" Description=\"".$desc."\" Type=\"".$type."\" Reference=\"".$reference."\" FirstName=\"".$first_name."\" LastName=\"".$last_name."\" Email=\"".$email."\" PhoneNumber=\"".$phonenumber."\" xmlns=\"http://www.pesapal.com\" />";
         $post_xml = htmlentities($post_xml);
 
         $consumer = new OAuthConsumer($consumer_key, $consumer_secret);
