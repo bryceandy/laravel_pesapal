@@ -20,12 +20,14 @@ class Pesapal
 
     /**
      * Pesapal constructor.
+     *
+     * @param OAuthSignatureMethod_HMAC_SHA1 $signature
      */
-    public function __construct()
+    public function __construct(OAuthSignatureMethod_HMAC_SHA1 $signature)
     {
         $this->consumer_key = config('laravel_pesapal.consumer_key');
         $this->consumer_secret = config('laravel_pesapal.consumer_secret');
-        $this->signature_method = new OAuthSignatureMethod_HMAC_SHA1();
+        $this->signature_method = $signature;
         $this->iframe_link = config('laravel_pesapal.is_live') ?
             'https://www.pesapal.com/api/PostPesapalDirectOrderV4' :
             'https://demo.pesapal.com/api/PostPesapalDirectOrderV4';

@@ -2,6 +2,7 @@
 
 namespace Bryceandy\Laravel_Pesapal;
 
+use Bryceandy\Laravel_Pesapal\OAuth\OAuthSignatureMethod_HMAC_SHA1;
 use Illuminate\Support\ServiceProvider;
 
 class PesapalServiceProvider extends ServiceProvider
@@ -26,7 +27,9 @@ class PesapalServiceProvider extends ServiceProvider
      */
     private function registerResources()
     {
-        $this->app->singleton('Pesapal', fn($app) => new \Bryceandy\Laravel_Pesapal\Pesapal());
+        $this->app->singleton('Pesapal', fn($app) =>
+            new \Bryceandy\Laravel_Pesapal\Pesapal(new OAuthSignatureMethod_HMAC_SHA1())
+        );
 
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel_pesapal');
