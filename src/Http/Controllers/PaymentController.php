@@ -38,8 +38,8 @@ class PaymentController
             'description' => 'required|min:5',
             'type' => 'required|in:MERCHANT',
             'reference' => 'required',
-            'first_name' => 'sometimes|min:3',
-            'last_name' => 'sometimes|min:3',
+            'first_name' => 'sometimes|required|min:3',
+            'last_name' => 'sometimes|required|min:3',
             'email' => 'required_without:phone_number|email',
             'phone_number' => 'required_without:email|numeric',
         ])->validate();
