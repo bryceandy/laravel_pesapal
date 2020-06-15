@@ -9,8 +9,12 @@ use Illuminate\Config\Repository;
 
 class Pesapal
 {
+    private $token;
+
+    private $params;
+    
     /**
-     * @var Repository|mixed|string 
+     * @var Repository|mixed|string
      */
     private string $consumerKey;
 
@@ -46,6 +50,8 @@ class Pesapal
      */
     public function __construct(OAuthSignatureMethod_HMAC_SHA1 $signature)
     {
+        $this->token = NULL;
+        $this->params = NULL;
         $this->consumerKey = config('laravel_pesapal.consumer_key');
         $this->consumerSecret = config('laravel_pesapal.consumer_secret');
         $this->consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
@@ -72,10 +78,10 @@ class Pesapal
         $consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
 
         // Post transaction to pesapal
-        $iframeSrc = OAuthRequest::from_consumer_and_token($this->consumer, $token, "GET", $this->iframeLink, $params);
+        $iframeSrc = OAuthRequest::from_consumer_and_token($this->consumer, $this->token, "GET", $this->iframeLink, $this->params);
         $iframeSrc->set_parameter("oauth_callback", $this->callbackUrl);
         $iframeSrc->set_parameter("pesapal_request_data", $postXml);
-        $iframeSrc->sign_request($this->signatureMethod, $this->consumer, $token);
+        $iframeSrc->sign_request($this->signatureMethod, $this->consumer, $this->token);
         // Retrieve iframe source
         return $iframeSrc;
     }
