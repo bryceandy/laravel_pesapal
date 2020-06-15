@@ -57,14 +57,14 @@ class Pesapal
     {
         $this->token = NULL;
         $this->params = NULL;
-        $this->consumerKey = config('laravel_pesapal.consumer_key');
-        $this->consumerSecret = config('laravel_pesapal.consumer_secret');
+        $this->consumerKey = config('pesapal.consumer_key');
+        $this->consumerSecret = config('pesapal.consumer_secret');
         $this->consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
         $this->signatureMethod = $signature;
-        $this->serverURL = config('laravel_pesapal.is_live') ?
+        $this->serverURL = config('pesapal.is_live') ?
             'https://www.pesapal.com' : 'https://demo.pesapal.com';
         $this->iframeLink = $this->serverURL . '/api/PostPesapalDirectOrderV4';
-        $this->callbackUrl = config('laravel_pesapal.callback_url');
+        $this->callbackUrl = config('pesapal.callback_url');
     }
 
     /**
