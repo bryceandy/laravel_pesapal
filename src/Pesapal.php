@@ -12,7 +12,7 @@ class Pesapal
     private $token;
 
     private $params;
-    
+
     /**
      * @var Repository|mixed|string
      */
@@ -86,10 +86,66 @@ class Pesapal
         return $iframeSrc;
     }
 
-    public function statusByTrackingIdAndMerchantRef($merchantRef, $tracking_id)
+    /**
+     * Get payment status
+     *
+     * @param $merchantRef
+     * @param $trackingId
+     * @return mixed|string
+     */
+    public function statusByTrackingIdAndMerchantRef($merchantRef, $trackingId)
     {
+        $serverURL = config('laravel_pesapal.is_live') ? 'https://demo.pesapal.com' : 'https://www.pesapal.com';
+
         $requestStatus = OAuthRequest::from_consumer_and_token(
             $this->consumer,
+            $this->token,
+            'GET',
+            $serverURL . '/API/querypaymentstatus',
+            $this->params
         );
+
+        $requestStatus->set_parameter("pesapal_merchant_reference", $merchantRef);
+        $requestStatus->set_parameter("pesapal_transaction_tracking_id",$trackingId);
+        $requestStatus->sign_request($this->signatureMethod, $this->consumer, $this->token);
+
+        return $this->curlRequest($requestStatus);
+    }
+
+    /**
+     * Perform curl request to get the payment status
+     *
+     * @param $request_status
+     * @return mixed|string
+     */
+    private function curlRequest($request_status)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $request_status);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        if(defined('CURL_PROXY_REQUIRED')) if (CURL_PROXY_REQUIRED == 'True'){
+            $proxy_tunnel_flag = (
+                defined('CURL_PROXY_TUNNEL_FLAG')
+                && strtoupper(CURL_PROXY_TUNNEL_FLAG) == 'FALSE'
+            ) ? false : true;
+            curl_setopt ($ch, CURLOPT_HTTPPROXYTUNNEL, $proxy_tunnel_flag);
+            curl_setopt ($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+            curl_setopt ($ch, CURLOPT_PROXY, CURL_PROXY_SERVER_DETAILS);
+        }
+
+        $response 	  = curl_exec($ch);
+        $header_size  = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $raw_header   = substr($response, 0, $header_size - 4);
+        $headerArray  = explode("\r\n\r\n", $raw_header);
+        $header 	  = $headerArray[count($headerArray) - 1];
+
+        // Payment status
+        $elements = preg_split("/=/",substr($response, $header_size));
+
+        curl_close($ch);
+        return $elements[1];
     }
 }
