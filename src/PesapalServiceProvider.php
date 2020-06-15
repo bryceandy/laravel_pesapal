@@ -35,10 +35,11 @@ class PesapalServiceProvider extends ServiceProvider
     }
 
     /**
-     * Loads resources
+     * Loads that are needed automatically
      */
     private function loadResources()
     {
+        // Boot facade
         $this->app->singleton('Pesapal', fn($app) =>
             new \Bryceandy\Laravel_Pesapal\Pesapal(new OAuthSignatureMethod_HMAC_SHA1())
         );
