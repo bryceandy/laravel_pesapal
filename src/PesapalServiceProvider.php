@@ -43,7 +43,7 @@ class PesapalServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/pesapal.php' => config_path('pesapal.php'),
-            __DIR__.'/resources/views/' => resource_path('views/vendor/laravel_pesapal'),
+            //__DIR__.'/resources/views/' => resource_path('views/vendor/laravel_pesapal'),
             __DIR__.'/assets' => public_path('pesapal'),
         ]);
     }
