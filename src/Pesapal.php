@@ -90,6 +90,22 @@ class Pesapal
         return $iframeSrc;
     }
 
+    public function getTransactionDetails($merchantRef, $trackingId)
+    {
+        $url = $this->serverURL . '/API/querypaymentdetails';
+
+        $responseData = $this->responseData($merchantRef, $trackingId, $url);
+
+        $pesapalResponse = explode(",", $responseData);
+
+        return [
+            'pesapal_transaction_tracking_id' => $pesapalResponse[0],
+            'payment_method' => $pesapalResponse[1],
+            'status' => $pesapalResponse[2],
+            'pesapal_merchant_reference' => $pesapalResponse[3],
+        ];
+    }
+
     /**
      * Get payment status by merchant reference and tracking id
      *
@@ -99,15 +115,30 @@ class Pesapal
      */
     public function statusByTrackingIdAndMerchantRef($merchantRef, $trackingId)
     {
+        $url = $this->serverURL . '/API/querypaymentstatus';
+
+        return $this->responseData($merchantRef, $trackingId, $url);
+    }
+
+    /**
+     * Returns the response data when checking status or fetching payment details
+     *
+     * @param string $merchantReference
+     * @param $trackingId
+     * @param string $url
+     * @return mixed|string
+     */
+    private function responseData(string $merchantReference, $trackingId, string $url)
+    {
         $requestStatus = OAuthRequest::from_consumer_and_token(
             $this->consumer,
             $this->token,
             'GET',
-            $this->serverURL . '/API/querypaymentstatus',
+            $url,
             $this->params
         );
 
-        $requestStatus->set_parameter("pesapal_merchant_reference", $merchantRef);
+        $requestStatus->set_parameter("pesapal_merchant_reference", $merchantReference);
         $requestStatus->set_parameter("pesapal_transaction_tracking_id",$trackingId);
         $requestStatus->sign_request($this->signatureMethod, $this->consumer, $this->token);
 
