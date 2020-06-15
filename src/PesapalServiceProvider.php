@@ -33,7 +33,7 @@ class PesapalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/pesapal.php', 'laravel_pesapal');
+        //
     }
 
     /**
