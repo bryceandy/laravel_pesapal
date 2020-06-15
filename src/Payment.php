@@ -44,20 +44,21 @@ class Payment extends Model
 
     }
 
+    /**
+     * Modify payment
+     *
+     * @param $transaction
+     * @return mixed
+     */
     public static function modify($transaction)
     {
-        $status 					= $transaction['status'];
-        $payment_method 			= $transaction['payment_method'];
-        $pesapalMerchantReference	= $transaction['pesapal_merchant_reference'];
-        $pesapalTrackingId 			= $transaction['pesapal_transaction_tracking_id'];
+        // Status will always detect a change and send notifications by IPN
+        $payment = Payment::whereReference($transaction['pesapal_merchant_reference'])->first();
 
-        //payment status will always detect a change and send you notifications by IPN
-        $transaction = Payment::whereReference($pesapalMerchantReference)->first();
-
-        return $transaction->update([
-            'status' => $status,
-            'payment_method' => $payment_method,
-            'tracking_id' => $pesapalTrackingId
+        return $payment->update([
+            'status' => $transaction['status'],
+            'payment_method' => $transaction['payment_method'],
+            'tracking_id' => $transaction['pesapal_transaction_tracking_id'],
         ]);
     }
 }
