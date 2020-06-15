@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\View\View;
 
-class TransactionController
+class PaymentController
 {
     protected ValidationFactory $validation;
 
     /**
-     * TransactionController constructor.
+     * PaymentController constructor.
      *
      * @param ValidationFactory $validation
      */
@@ -24,8 +24,8 @@ class TransactionController
     }
 
     /**
-     * Stores a new transaction, post it to pesapal and
-     * displays the iframe where payment options are
+     * Stores a new payment, post it to pesapal &
+     * displays the iframe with payment methods
      *
      * @param Request $request
      * @return Factory|View
