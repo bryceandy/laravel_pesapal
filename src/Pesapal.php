@@ -34,6 +34,11 @@ class Pesapal
     private string $iframeLink;
 
     /**
+     * @var string
+     */
+    private string $serverURL;
+
+    /**
      * @var Repository|mixed|string
      */
     private string $callbackUrl;
@@ -56,9 +61,8 @@ class Pesapal
         $this->consumerSecret = config('laravel_pesapal.consumer_secret');
         $this->consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
         $this->signatureMethod = $signature;
-        $this->iframeLink = config('laravel_pesapal.is_live') ?
-            'https://www.pesapal.com/api/PostPesapalDirectOrderV4' :
-            'https://demo.pesapal.com/api/PostPesapalDirectOrderV4';
+        $this->serverURL = config('laravel_pesapal.is_live') ? 'https://demo.pesapal.com' : 'https://www.pesapal.com';
+        $this->iframeLink = $this->serverURL . '/api/PostPesapalDirectOrderV4';
         $this->callbackUrl = config('laravel_pesapal.callback_url');
     }
 
@@ -87,7 +91,7 @@ class Pesapal
     }
 
     /**
-     * Get payment status
+     * Get payment status by merchant reference and tracking id
      *
      * @param $merchantRef
      * @param $trackingId
@@ -95,18 +99,38 @@ class Pesapal
      */
     public function statusByTrackingIdAndMerchantRef($merchantRef, $trackingId)
     {
-        $serverURL = config('laravel_pesapal.is_live') ? 'https://demo.pesapal.com' : 'https://www.pesapal.com';
-
         $requestStatus = OAuthRequest::from_consumer_and_token(
             $this->consumer,
             $this->token,
             'GET',
-            $serverURL . '/API/querypaymentstatus',
+            $this->serverURL . '/API/querypaymentstatus',
             $this->params
         );
 
         $requestStatus->set_parameter("pesapal_merchant_reference", $merchantRef);
         $requestStatus->set_parameter("pesapal_transaction_tracking_id",$trackingId);
+        $requestStatus->sign_request($this->signatureMethod, $this->consumer, $this->token);
+
+        return $this->curlRequest($requestStatus);
+    }
+
+    /**
+     * Get payment status by merchant reference
+     *
+     * @param $merchantReference
+     * @return mixed|string
+     */
+    public function statusByMerchantRef($merchantReference){
+
+        $requestStatus = OAuthRequest::from_consumer_and_token(
+            $this->consumer,
+            $this->token,
+            'GET',
+            $this->serverURL.'/API/querypaymentstatusbymerchantref',
+            $this->params
+        );
+
+        $requestStatus->set_parameter("pesapal_merchant_reference", $merchantReference);
         $requestStatus->sign_request($this->signatureMethod, $this->consumer, $this->token);
 
         return $this->curlRequest($requestStatus);
