@@ -1,11 +1,11 @@
 <?php
 
-namespace Bryceandy\Laravel_Pesapal\Models;
+namespace Bryceandy\Laravel_Pesapal;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Payment extends Model
 {
     protected $fillable = [
         'user_id', 'amount', 'currency', 'description', 'reference', 'phone', 'status', 'tracking_id', 'payment_method'
@@ -25,7 +25,7 @@ class Transaction extends Model
         if($userExists)
         {
             $user_id = $userExists->id;
-            Transaction::create([
+            Payment::create([
                 'user_id' => $user_id, 'phone' => $phonenumber, 'amount' => $amount, 'currency' => $currency, 'description' => $desc, 'reference' => $reference
             ]);
         }
@@ -37,7 +37,7 @@ class Transaction extends Model
             ]);
 
             $user_id = $user->id;
-            Transaction::create([
+            Payment::create([
                 'user_id' => $user_id, 'phone' => $phonenumber, 'amount' => $amount, 'currency' => $currency, 'description' => $desc, 'reference' => $reference
             ]);
         }
@@ -52,7 +52,7 @@ class Transaction extends Model
         $pesapalTrackingId 			= $transaction['pesapal_transaction_tracking_id'];
 
         //payment status will always detect a change and send you notifications by IPN
-        $transaction = Transaction::whereReference($pesapalMerchantReference)->first();
+        $transaction = Payment::whereReference($pesapalMerchantReference)->first();
 
         return $transaction->update([
             'status' => $status,

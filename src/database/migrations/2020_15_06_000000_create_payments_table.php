@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
-            //only include user_id if you want to associate a user on your Users table with this Transaction
+            //only include user_id if you want to associate a user on your Users table with this Payment
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 

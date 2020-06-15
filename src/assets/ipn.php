@@ -1,7 +1,7 @@
 <?php
 
 use Bryceandy\Laravel_Pesapal\OAuth\CheckStatus;
-use Bryceandy\Laravel_Pesapal\Models\Transaction;
+use Bryceandy\Laravel_Pesapal\Payment;
 
 $checkStatus = new CheckStatus();
 $pesapalMerchantReference = $_GET['pesapal_merchant_reference'] ?? null;
@@ -19,7 +19,7 @@ $value	= [
 
 $status	= $value[$transactionDetails['status']];
 
-$updateStatus = Transaction::modify($transactionDetails);
+$updateStatus = Payment::modify($transactionDetails);
 
 $dbUpdate = $updateStatus ? "True" : 'False';
 

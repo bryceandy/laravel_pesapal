@@ -3,7 +3,7 @@ namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
 use Bryceandy\Laravel_Pesapal\Facades\Pesapal;
 use Bryceandy\Laravel_Pesapal\OAuth\CheckStatus;
-use Bryceandy\Laravel_Pesapal\Models\Transaction;
+use Bryceandy\Laravel_Pesapal\Payment;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
@@ -44,7 +44,7 @@ class TransactionController
             'phone_number' => 'required_without:email|numeric',
         ])->validate();
 
-        Transaction::record($request);
+        Payment::record($request);
 
         $iframe_src = Pesapal::getIframeSource($request);
 
