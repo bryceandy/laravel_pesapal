@@ -23,7 +23,7 @@ class PesapalServiceProvider extends ServiceProvider
             ], 'pesapal-config');
         }
 
-        $this->registerResources();
+        $this->loadResources();
     }
 
     /**
@@ -39,7 +39,7 @@ class PesapalServiceProvider extends ServiceProvider
     /**
      * Loads resources
      */
-    private function registerResources()
+    private function loadResources()
     {
         $this->app->singleton('Pesapal', fn($app) =>
             new \Bryceandy\Laravel_Pesapal\Pesapal(new OAuthSignatureMethod_HMAC_SHA1())
