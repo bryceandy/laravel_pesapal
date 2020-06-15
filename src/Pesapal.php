@@ -17,6 +17,10 @@ class Pesapal
     protected string $iframeLink;
 
     protected string $callbackUrl;
+    /**
+     * @var OAuthConsumer
+     */
+    private OAuthConsumer $consumer;
 
     /**
      * Pesapal constructor.
@@ -27,6 +31,7 @@ class Pesapal
     {
         $this->consumerKey = config('laravel_pesapal.consumer_key');
         $this->consumerSecret = config('laravel_pesapal.consumer_secret');
+        $this->consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
         $this->signatureMethod = $signature;
         $this->iframeLink = config('laravel_pesapal.is_live') ?
             'https://www.pesapal.com/api/PostPesapalDirectOrderV4' :
@@ -50,11 +55,18 @@ class Pesapal
         $consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
 
         // Post transaction to pesapal
-        $iframeSrc = OAuthRequest::from_consumer_and_token($consumer, $token, "GET", $this->iframeLink, $params);
+        $iframeSrc = OAuthRequest::from_consumer_and_token($this->consumer, $token, "GET", $this->iframeLink, $params);
         $iframeSrc->set_parameter("oauth_callback", $this->callbackUrl);
         $iframeSrc->set_parameter("pesapal_request_data", $postXml);
-        $iframeSrc->sign_request($this->signatureMethod, $consumer, $token);
+        $iframeSrc->sign_request($this->signatureMethod, $this->consumer, $token);
         // Retrieve iframe source
         return $iframeSrc;
+    }
+
+    public function statusByTrackingIdAndMerchantRef($merchantRef, $tracking_id)
+    {
+        $requestStatus = OAuthRequest::from_consumer_and_token(
+            $this->consumer,
+        );
     }
 }
