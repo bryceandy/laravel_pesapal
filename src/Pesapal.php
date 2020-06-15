@@ -34,6 +34,12 @@ class Pesapal
         $this->callback_url = config('laravel_pesapal.callback_url');
     }
 
+    /**
+     * Fetches the iframe source after passing payment parameters
+     * 
+     * @param $request
+     * @return OAuthRequest
+     */
     public function getIframeSource($request)
     {
         // Pesapal params
