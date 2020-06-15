@@ -8,7 +8,7 @@ class OAuthConsumer
 
     public string $secret;
 
-    public string $callback_url;
+    public $callback_url;
 
     public function __construct($key, $secret, $callback_url = NULL) {
         $this->key = $key;
