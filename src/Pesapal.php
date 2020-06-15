@@ -36,19 +36,19 @@ class Pesapal
 
     public function getIframeSource($request)
     {
-        //pesapal params
+        // Pesapal params
         $token = $params = NULL;
         $post_xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$request->currency."\" Amount=\"".$request->amount."\" Description=\"".$request->description."\" Type=\"".$request->type."\" Reference=\"".$request->reference."\" FirstName=\"".$request->first_name?:''."\" LastName=\"".$request->last_name?:''."\" Email=\"".$request->email?:''."\" PhoneNumber=\"".$request->phone_number?:''."\" xmlns=\"http://www.pesapal.com\" />";
         $post_xml = htmlentities($post_xml);
 
         $consumer = new OAuthConsumer($this->consumer_key, $this->consumer_secret);
 
-        //post transaction to pesapal
+        // Post transaction to pesapal
         $iframe_src = OAuthRequest::from_consumer_and_token($consumer, $token, "GET", $this->iframe_link, $params);
         $iframe_src->set_parameter("oauth_callback", $this->callback_url);
         $iframe_src->set_parameter("pesapal_request_data", $post_xml);
         $iframe_src->sign_request($this->signature_method, $consumer, $token);
-
+        // Retrieve iframe source
         return $iframe_src;
     }
 }
