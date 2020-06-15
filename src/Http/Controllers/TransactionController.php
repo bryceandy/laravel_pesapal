@@ -44,7 +44,7 @@ class TransactionController
             'phone_number' => 'required_without:email|numeric',
         ])->validate();
 
-        Payment::record($request);
+        Payment::create($request->all());
 
         $iframe_src = Pesapal::getIframeSource($request);
 

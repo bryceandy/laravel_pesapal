@@ -14,29 +14,28 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('pesapal_payments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->id();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->unsignedBigInteger('phone_number')->nullable();
+            $table->text('email')->nullable();
 
-            //only include user_id if you want to associate a user on your Users table with this Payment
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->string('phone');
-            $table->bigInteger('amount');
-            $table->text('currency');
-
-            //a new transaction will be marked as null until payment is confirmed
-            $table->text('status')->nullable();
+            $table->unsignedDecimal('amount');
+            $table->string('currency');
 
             //the reference and description will also be recorded on your pesapal dashboard
             $table->string('reference');
-            $table->string('description');
+            $table->text('description');
 
-            //this tracking_id is necessary when sending you notifications forexample if a payment is PENDING or COMPLETED etc...
-            $table->string('tracking_id')->nullable()->default(null);
+            // Payment status i.e PENDING or COMPLETED etc...
+            $table->text('status')->nullable();
 
-            //many payment methods exist such as mpesa, tigopesa, visa, mastercard, american express etc...
-            $table->text('payment_method')->nullable()->default(null);
+            //This is necessary when receiving IPN notifications
+            $table->text('tracking_id')->nullable();
+
+            // Methods include Mpesa, TigoPesa, Visa, Mastercard, American Express etc...
+            $table->string('payment_method')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -47,6 +46,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('pesapal_payments');
     }
 }
