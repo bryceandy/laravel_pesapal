@@ -121,6 +121,23 @@ class Pesapal
     }
 
     /**
+     * Get payment status by merchant reference
+     *
+     * @param $merchantReference
+     * @return mixed|string
+     */
+    public function statusByMerchantRef($merchantReference){
+
+        $url = $this->serverURL.'/API/querypaymentstatusbymerchantref';
+
+        $requestStatus = $this->initRequestStatus($url);
+        $requestStatus->set_parameter("pesapal_merchant_reference", $merchantReference);
+        $requestStatus->sign_request($this->signatureMethod, $this->consumer, $this->token);
+
+        return $this->curlRequest($requestStatus);
+    }
+
+    /**
      * Returns the response data when checking status or fetching payment details
      *
      * @param string $merchantReference
@@ -130,13 +147,7 @@ class Pesapal
      */
     private function responseData(string $merchantReference, $trackingId, string $url)
     {
-        $requestStatus = OAuthRequest::from_consumer_and_token(
-            $this->consumer,
-            $this->token,
-            'GET',
-            $url,
-            $this->params
-        );
+        $requestStatus = $this->initRequestStatus($url);
 
         $requestStatus->set_parameter("pesapal_merchant_reference", $merchantReference);
         $requestStatus->set_parameter("pesapal_transaction_tracking_id",$trackingId);
@@ -146,25 +157,20 @@ class Pesapal
     }
 
     /**
-     * Get payment status by merchant reference
+     * Initialize request status
      *
-     * @param $merchantReference
-     * @return mixed|string
+     * @param $url
+     * @return OAuthRequest
      */
-    public function statusByMerchantRef($merchantReference){
-
-        $requestStatus = OAuthRequest::from_consumer_and_token(
+    private function initRequestStatus($url)
+    {
+        return OAuthRequest::from_consumer_and_token(
             $this->consumer,
             $this->token,
             'GET',
-            $this->serverURL.'/API/querypaymentstatusbymerchantref',
+            $url,
             $this->params
         );
-
-        $requestStatus->set_parameter("pesapal_merchant_reference", $merchantReference);
-        $requestStatus->sign_request($this->signatureMethod, $this->consumer, $this->token);
-
-        return $this->curlRequest($requestStatus);
     }
 
     /**
