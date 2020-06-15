@@ -13,7 +13,7 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('pesapal_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 

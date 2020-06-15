@@ -11,7 +11,7 @@ class Payment extends Model
         'user_id', 'amount', 'currency', 'description', 'reference', 'phone', 'status', 'tracking_id', 'payment_method'
     ];
 
-    protected $table = 'transactions';
+    protected $table = 'pesapal_payments';
 
     public function user()
     {
