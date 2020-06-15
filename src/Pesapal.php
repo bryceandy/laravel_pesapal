@@ -5,18 +5,35 @@ namespace Bryceandy\Laravel_Pesapal;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthConsumer;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthRequest;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthSignatureMethod_HMAC_SHA1;
+use Illuminate\Config\Repository;
 
 class Pesapal
 {
-    protected string $consumerKey;
+    /**
+     * @var Repository|mixed|string 
+     */
+    private string $consumerKey;
 
-    protected string $consumerSecret;
+    /**
+     * @var Repository|mixed|string
+     */
+    private string $consumerSecret;
 
-    protected OAuthSignatureMethod_HMAC_SHA1 $signatureMethod;
+    /**
+     * @var OAuthSignatureMethod_HMAC_SHA1
+     */
+    private OAuthSignatureMethod_HMAC_SHA1 $signatureMethod;
 
-    protected string $iframeLink;
+    /**
+     * @var string
+     */
+    private string $iframeLink;
 
-    protected string $callbackUrl;
+    /**
+     * @var Repository|mixed|string
+     */
+    private string $callbackUrl;
+
     /**
      * @var OAuthConsumer
      */
