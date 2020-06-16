@@ -10,7 +10,9 @@
     * This version would not allow publishing any views, migrations or assets
     * The only file that remains published will be the pesapal config file
   * New facade to enable the querying of a payment status and order details
-  * Customizable IPN listener
+  * Customizable IPN listener. When a payment status changes, you can choose whether to 
+    * Send an e-mail or notification
+    * Fire an event or dispatch a job
 
 ## [v1.0.1](https://github.com/bryceandy/laravel_pesapal/compare/v1.0.0...v1.0.1) - January 11, 2019
   * Remove default empty config values for consumer key and consumer secret
