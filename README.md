@@ -100,7 +100,7 @@ This package comes with a route `/pesapal/iframe` where you can post the data as
     'amount' => 'Required, input should be numbers only',
     'currency' => 'Required, values can be TZS,KES,UGX or USD',
     'description' => 'Required, short description of the payment',
-    'type' => 'Required, default value is "MERCHANT"',
+    'type' => 'Required, "MERCHANT" or "ORDER"',
     'reference' => 'Required, should be auto-generated and unique for every transaction',
     'first_name' => 'Optional',
     'last_name' => 'Optional',
@@ -108,6 +108,13 @@ This package comes with a route `/pesapal/iframe` where you can post the data as
     'phone_number' => 'Required if there is no email, include the country code. Example 255784999999',
 ]
 ```  
+
+For the **type** field, leave the default as MERCHANT. Use ORDER if your payment meets the following:  
+1. The order needs to be shipped.  
+2. The customer has the option to verify the delivery as satisfactory.  
+3. The payment is held in escrow until the completion of the delivery and acceptance process.  
+
+**Note:** if you use ORDER, it requires you to mark the order as SHIPPED and DELIVERED via your PesaPal merchant console.  
 
 When the data is posted successfully, you will have a view of the form to make payments.  
 

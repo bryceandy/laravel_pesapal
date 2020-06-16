@@ -36,7 +36,7 @@ class PaymentController
             'amount' => 'required|numeric',
             'currency' => 'required|in:TZS,KES,UGX,USD',
             'description' => 'required|min:5',
-            'type' => 'required|in:MERCHANT',
+            'type' => 'required|in:MERCHANT,ORDER',
             'reference' => 'required',
             'first_name' => 'sometimes|required|min:3',
             'last_name' => 'sometimes|required|min:3',
