@@ -20,7 +20,7 @@ class CreatePesapalPaymentsTable extends Migration
             $table->unsignedBigInteger('phone_number')->nullable();
             $table->text('email')->nullable();
 
-            $table->unsignedDecimal('amount', 50, 2);
+            $table->text('amount');
             $table->string('currency');
 
             //the reference and description will also be recorded on your PesaPal dashboard
