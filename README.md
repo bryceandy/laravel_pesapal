@@ -132,7 +132,14 @@ With these two we can now:
 
 A: Use these parameters to query the payment status to display to the user.  
 
-In the controller method where you display the callback page, we can get the status in the following way  
+Normally on your callback page you can display whatever you need to your customer to show that the payment is being processed.  
+
+![Callback page sample](images/callback.png)  
+
+
+But because PesaPal will send the payment tracking Id which you have not recorded, you have the opportunity to save this unique tracking Id for your payment and also query for the payment status.  
+
+In the controller method where you display the callback page, we can query the status:   
 
 ```php
 namespace App\Http\Controllers;
