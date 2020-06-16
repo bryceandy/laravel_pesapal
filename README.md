@@ -18,7 +18,7 @@ There are M-Pesa, TigoPesa payments popular with East African mobile money syste
 ![Pesapal iFrame](images/iFrame.png)  
 
 
-### Version support   
+# Version support   
 
 | Laravel version | Package version | Maintenance |
 | --- | --- | --- |
@@ -26,7 +26,7 @@ There are M-Pesa, TigoPesa payments popular with East African mobile money syste
 | 7 and above | 2.0.0 | Actively maintained |  
 
 
-### Installation  
+# Installation  
 
 Pre-installation requirements  
 
@@ -41,7 +41,7 @@ composer require bryceandy/laravel_pesapal
 ```  
  
  
-### Configuration  
+# Configuration  
  
 Next we publish the configuration file that comes with the package  
 
@@ -74,16 +74,16 @@ php artisan migrate
 ```  
 
 
-### Usage  
+# Usage  
   
-##### Before making a payment, setup a callback page.  
+### Before making a payment, setup a callback page.  
 
 Create a callback page and register its URL in the `PESAPAL_CALLBACK_URL` environment variable. This can be something like `http://yourwebsite.com/callback`  
 
 Once a payment process has been completed by the user, PesaPal will redirect to your site using the url.  
  
   
-##### Making a request to PesaPal for a payment.  
+### Making a request to PesaPal for a payment.  
 
 PesaPal requires a request sent to their API in order to display the 'Choose payment option' form for you, like the one we [see above](#pesapal-package-for-laravel-apps )  
  
@@ -120,7 +120,7 @@ When the data is posted successfully, you will have a view of the form to make p
 A new payment record will be recorded in your `pesapal_payments` table, now you can choose the payment option you prefer.  
 
 
-##### Fetching the payment status.  
+### Fetching the payment status.  
  
 After making the payment you will be redirected to the callback URL as mentioned above, and PesaPal will redirect with two query parameters:  
 
@@ -229,7 +229,7 @@ class IpnController extends Controller
 This controller method will be called every time PesaPal sends you an IPN notification until the payment is completed or has failed.
 
 
-### IMPORTANT  
+# IMPORTANT  
 
 For live accounts, on your PesaPal dashboard find your Account Settings and click IPN Settings.  
  
@@ -240,12 +240,12 @@ This is important so that PesaPal can send IPN notifications.
 **Go ahead and start making payments!**.   
 
 
-### License   
+# License   
 
 MIT License.
 
 
-### Contributors  
+# Contributors  
 
 The base of this package is from the PHP API of [PesaPal](https://pesapal.com)  
   

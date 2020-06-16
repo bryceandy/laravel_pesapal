@@ -1,5 +1,8 @@
 # Change Log
 
+## [v2.0.0](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.0-beta.1...v2.0.0) - June 17, 2020  
+  * Version 2 release  
+
 ## [v2.0.0-beta.1](https://github.com/bryceandy/laravel_pesapal/compare/v1.0.1...v2.0.0-beta.1) - June 17, 2020
   * Version support
     * PHP
