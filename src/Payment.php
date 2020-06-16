@@ -11,6 +11,16 @@ class Payment extends Model
     protected $guarded = [];
 
     /**
+     * Save the amount with 2 dp
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(fn($payment) => $payment->amount = number_format($payment->amount, 2));
+    }
+
+    /**
      * Modify payment
      *
      * @param $transaction
