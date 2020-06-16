@@ -24,7 +24,7 @@ class PaymentController
     }
 
     /**
-     * Stores a new payment, post it to pesapal &
+     * Stores a new payment, post it to PesaPal &
      * displays the iframe with payment methods
      *
      * @param Request $request

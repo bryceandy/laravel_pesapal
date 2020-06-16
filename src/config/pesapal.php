@@ -7,7 +7,7 @@ return [
     | Pesapal Consumer Key
     |--------------------------------------------------------------------------
     |
-    | The key obtained after creating your pesapal demo or live account
+    | The key obtained after creating your PesaPal demo or live account
     | When committing this to a repository, remove the default value
     | and put it into your online PESAPAL_KEY config variable
     |
@@ -19,7 +19,7 @@ return [
    | Pesapal Consumer Secret
    |--------------------------------------------------------------------------
    |
-   | The secret key obtained after creating your pesapal demo or live account
+   | The secret key obtained after creating your PesaPal demo or live account
    | When committing this to a repository, remove the default value and
    | put it into your online PESAPAL_SECRET configuration variable
    |

@@ -23,7 +23,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedDecimal('amount', 50, 2);
             $table->string('currency');
 
-            //the reference and description will also be recorded on your pesapal dashboard
+            //the reference and description will also be recorded on your PesaPal dashboard
             $table->string('reference');
             $table->text('description');
 
