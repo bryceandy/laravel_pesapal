@@ -8,6 +8,16 @@ use Illuminate\Foundation\Application;
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     /**
+     * Base set up
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withFactories(__DIR__ . '../src/database/factories');
+    }
+
+    /**
      * @param Application $app
      */
     protected function getEnvironmentSetUp($app)
