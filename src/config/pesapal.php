@@ -38,17 +38,6 @@ return [
     'is_live' => env('PESAPAL_IS_LIVE', false),
 
     /*
-    |--------------------------------------------------------------------------
-    | IPN Notifications Email
-    |--------------------------------------------------------------------------
-    |
-    | This is the email through which Pesapal will send notifications indicating
-    | whether payments are still pending, completed, invalid, or rather failed
-    |
-    */
-    'ipn_notifications_email' => env('PESAPAL_IPN_EMAIL'),
-
-    /*
    |--------------------------------------------------------------------------
    | Callback URL
    |--------------------------------------------------------------------------

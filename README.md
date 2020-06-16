@@ -65,7 +65,6 @@ PESPAL_KEY=yourConsumerKey
 PESAPAL_SECRET=yourConsumerSecret
 PESAPAL_IS_LIVE=false
 PESAPAL_CALLBACK_URL=
-PESAPAL_IPN_EMAIL=
 ```  
 
 There after run the migration command as the package will load a database migration that stores the payment records    
