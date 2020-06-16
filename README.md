@@ -7,8 +7,6 @@
 <a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/license.svg" alt="License"></a>  
 
 
-![Pesapal iFrame](images/iFrame.png)  
-
 This package enables Laravel developers to easily make use of the [PesaPal](https://www.pesapal.com) API. 
  
 There are M-Pesa, Tigo pesa payments popular with East African mobile money systems. Other payment integrations include, but not limited to:  
@@ -16,6 +14,8 @@ There are M-Pesa, Tigo pesa payments popular with East African mobile money syst
   - Mastercard  
   - Visa  
   - American Express  
+
+![Pesapal iFrame](images/iFrame.png)  
 
 
 ### Version support   
@@ -46,7 +46,7 @@ composer require bryceandy/laravel_pesapal
 Next we publish the configuration file that comes with the package  
 
 ```bash
-php artisan vendor:publish pesapal-config
+php artisan vendor:publish --tag=pesapal-config
 ```  
 
 After publishing, you will find a `pesapal.php` file in your `config` directory  
@@ -187,7 +187,7 @@ class IpnController extends Controller
         $transaction = Pesapal::getTransactionDetails($merchantReference, $trackingId);
         Payment::modify($transaction);
 
-        // If there was a status change and the status is not PENDING
+        // If there was a status change and the status is not 'PENDING'
         if($pesapalNotification == "CHANGE"){
 
             //Here you can do multiple things to notify your user that the changed status of their payment
@@ -200,12 +200,12 @@ class IpnController extends Controller
             // 3. You can also create a Laravel Notification or dispatch a Laravel Job. Possibilities are endless! 
 
             // Finally output a response to PesaPal
-            $resp = "pesapal_notification_type=$pesapalNotification".
-                    "&pesapal_transaction_tracking_id=$trackingId".
-                    "&pesapal_merchant_reference=$merchantReference";
+            $response = 'pesapal_notification_type='.$pesapalNotification.
+                    '&pesapal_transaction_tracking_id='.$trackingId.
+                    '&pesapal_merchant_reference='.$merchantReference;
             
             ob_start();
-            echo $resp;
+            echo $response;
             ob_flush();
             exit; // This is mandatory. If you dont exit, Pesapal will not get your response.
         }
@@ -218,7 +218,7 @@ This controller method will be called every time PesaPal sends you an IPN notifi
 
 ### IMPORTANT  
 
-For live accounts, on your pesapal dashboard find your Account Settings and click IPN Settings.  
+For live accounts, on your PesaPal dashboard find your Account Settings and click IPN Settings.  
  
 Fill in your website domain for example `yourWebsite.com` and IPN listener URL, for example `yourWebsite.co.tz/pesapal-ipn-listener`.  
 
@@ -234,7 +234,7 @@ MIT License.
 
 ### Contributors  
 
-The base of this package is from the PHP API of [Pesapal](https://pesapal.com)  
+The base of this package is from the PHP API of [PesaPal](https://pesapal.com)  
   
   - [BryceAndy](http://bryceandy.com) > hello@bryceandy.com  
   - Feel free to create pull requests and contribute to this package
