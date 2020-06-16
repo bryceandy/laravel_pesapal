@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2.0.0-beta.1](https://github.com/bryceandy/laravel_pesapal/compare/v1.0.1...v2.0.0-beta.1) - June 16, 2020
+## [v2.0.0-beta.1](https://github.com/bryceandy/laravel_pesapal/compare/v1.0.1...v2.0.0-beta.1) - June 17, 2020
   * Version support
     * PHP
       * The minimum PHP version required is from 7.4.*
