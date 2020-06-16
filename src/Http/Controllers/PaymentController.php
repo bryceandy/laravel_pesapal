@@ -50,21 +50,4 @@ class PaymentController
 
         return view ('laravel_pesapal::iframe', compact('iframe_src'));
     }
-
-    public function callback()
-    {
-        $checkStatus = new CheckStatus();
-
-        $pesapalMerchantReference = isset($_GET['pesapal_merchant_reference']) ?
-            $_GET['pesapal_merchant_reference'] : null;
-
-        $pesapalTrackingId = isset($_GET['pesapal_transaction_tracking_id']) ?
-            $_GET['pesapal_transaction_tracking_id'] : null;
-
-        //obtaining the payment status after a payment
-        $status = $checkStatus->byTrackingIdAndMerchantRef($pesapalMerchantReference, $pesapalTrackingId);
-
-        //display the reference and payment status on the callback page
-        return view ('laravel_pesapal::callback_example', compact('pesapalMerchantReference', 'status'));
-    }
 }
