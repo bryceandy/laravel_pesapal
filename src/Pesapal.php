@@ -76,7 +76,6 @@ class Pesapal
     public function getIframeSource($request)
     {
         // Pesapal params
-        $token = $params = NULL;
         $postXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$request->currency."\" Amount=\"".number_format($request->amount, 2)."\" Description=\"".$request->description."\" Type=\"".$request->type."\" Reference=\"".$request->reference."\" FirstName=\"".$request->first_name?:''."\" LastName=\"".$request->last_name?:''."\" Email=\"".$request->email?:''."\" PhoneNumber=\"".$request->phone_number?:''."\" xmlns=\"http://www.pesapal.com\" />";
         $postXml = htmlentities($postXml);
 
@@ -93,7 +92,7 @@ class Pesapal
     {
         $url = $this->serverURL . '/API/QueryPaymentDetails';
 
-        $responseData = $this->responseData($merchantRef, $trackingId, $url);
+        $responseData = $this->getResponseData($merchantRef, $trackingId, $url);
 
         $pesapalResponse = explode(",", $responseData);
 
@@ -116,7 +115,7 @@ class Pesapal
     {
         $url = $this->serverURL . '/API/QueryPaymentStatus';
 
-        return $this->responseData($merchantRef, $trackingId, $url);
+        return $this->getResponseData($merchantRef, $trackingId, $url);
     }
 
     /**
@@ -144,7 +143,7 @@ class Pesapal
      * @param string $url
      * @return mixed|string
      */
-    private function responseData(string $merchantReference, $trackingId, string $url)
+    private function getResponseData(string $merchantReference, $trackingId, string $url)
     {
         $requestStatus = $this->initRequestStatus($url);
 
