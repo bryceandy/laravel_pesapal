@@ -4,6 +4,7 @@
 use Bryceandy\Laravel_Pesapal\Payment;
 use Faker\Generator;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 $factory->define(Payment::class, fn (Generator $faker) => [
@@ -13,6 +14,7 @@ $factory->define(Payment::class, fn (Generator $faker) => [
     'email' => $faker->safeEmail,
     'amount' => $faker->randomNumber(null, true),
     'currency' => $faker->randomElement(['TZS', 'KES', 'UGX', 'USD']),
+    'type' => Arr::random(['MERCHANT', 'ORDER']),
     'reference' => Str::random(7),
     'description' => $faker->sentence,
 ]);
