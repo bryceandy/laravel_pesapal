@@ -43,6 +43,14 @@ class PaymentTest extends TestCase
     }
 
     /** @test */
+    public function a_payment_can_be_created_with_a_factory()
+    {
+        $this->payment;
+
+        $this->assertCount(1, Payment::all());
+    }
+
+    /** @test */
     public function payments_can_be_updated()
     {
         $payment = $this->payment;
@@ -57,10 +65,12 @@ class PaymentTest extends TestCase
     }
 
     /** @test */
-    public function a_payment_can_be_created_with_a_factory()
+    public function payment_amounts_should_be_formatted_and_in_two_decimal_points()
     {
-        $this->payment;
+        $payment = factory(Payment::class)->create([
+            'amount' => 12345,
+        ]);
 
-        $this->assertCount(1, Payment::all());
+        $this->assertEquals("12,345.00", $payment->amount);
     }
 }
