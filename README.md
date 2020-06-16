@@ -9,7 +9,7 @@
 
 This package enables Laravel developers to easily make use of the [PesaPal](https://www.pesapal.com) API. 
  
-There are M-Pesa, Tigo pesa payments popular with East African mobile money systems. Other payment integrations include, but not limited to:  
+There are M-Pesa, TigoPesa payments popular with East African mobile money systems. Other payment integrations include, but not limited to:  
 
   - Mastercard  
   - Visa  
