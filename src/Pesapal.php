@@ -2,6 +2,7 @@
 
 namespace Bryceandy\Laravel_Pesapal;
 
+use Bryceandy\Laravel_Pesapal\Exceptions\ConfigurationUnavailableException;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthConsumer;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthRequest;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthSignatureMethod_HMAC_SHA1;
@@ -52,9 +53,13 @@ class Pesapal
      * Pesapal constructor.
      *
      * @param OAuthSignatureMethod_HMAC_SHA1 $signature
+     * @throws ConfigurationUnavailableException
      */
     public function __construct(OAuthSignatureMethod_HMAC_SHA1 $signature)
     {
+        if (!config('pesapal.consumer_key') || !config('pesapal.consumer_secret'))
+            throw new ConfigurationUnavailableException();
+
         $this->token = NULL;
         $this->params = NULL;
         $this->consumerKey = config('pesapal.consumer_key');
