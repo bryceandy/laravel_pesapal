@@ -2,7 +2,6 @@
 namespace Bryceandy\Laravel_Pesapal\Http\Controllers;
 
 use Bryceandy\Laravel_Pesapal\Facades\Pesapal;
-use Bryceandy\Laravel_Pesapal\OAuth\CheckStatus;
 use Bryceandy\Laravel_Pesapal\Payment;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -44,7 +43,7 @@ class PaymentController
             'phone_number' => 'required_without:email|numeric',
         ])->validate();
 
-        Payment::create($request->all());
+        Payment::create($request->except('type'));
 
         $iframe_src = Pesapal::getIframeSource($request);
 
