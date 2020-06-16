@@ -91,7 +91,7 @@ class Pesapal
 
     public function getTransactionDetails($merchantRef, $trackingId)
     {
-        $url = $this->serverURL . '/API/querypaymentdetails';
+        $url = $this->serverURL . '/API/QueryPaymentDetails';
 
         $responseData = $this->responseData($merchantRef, $trackingId, $url);
 
@@ -114,7 +114,7 @@ class Pesapal
      */
     public function statusByTrackingIdAndMerchantRef($merchantRef, $trackingId)
     {
-        $url = $this->serverURL . '/API/querypaymentstatus';
+        $url = $this->serverURL . '/API/QueryPaymentStatus';
 
         return $this->responseData($merchantRef, $trackingId, $url);
     }
@@ -127,7 +127,7 @@ class Pesapal
      */
     public function statusByMerchantRef($merchantReference){
 
-        $url = $this->serverURL.'/API/querypaymentstatusbymerchantref';
+        $url = $this->serverURL.'/API/QueryPaymentStatusByMerchantRef';
 
         $requestStatus = $this->initRequestStatus($url);
         $requestStatus->set_parameter("pesapal_merchant_reference", $merchantReference);
