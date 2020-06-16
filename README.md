@@ -188,7 +188,7 @@ class IpnController extends Controller
         Payment::modify($transaction);
 
         // If there was a status change and the status is not 'PENDING'
-        if($pesapalNotification == "CHANGE"){
+        if($pesapalNotification == "CHANGE" && $trackingId != ''){
 
             //Here you can do multiple things to notify your user that the changed status of their payment
             // 1. Send an email or SMS (if your user doesnt have an email)to your user 
