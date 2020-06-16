@@ -1,7 +1,9 @@
 <?php
 
+/** @var Factory $factory */
 use Bryceandy\Laravel_Pesapal\Payment;
 use Faker\Generator;
+use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
 
 $factory->define(Payment::class, fn (Generator $faker) => [
