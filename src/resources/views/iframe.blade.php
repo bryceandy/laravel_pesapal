@@ -9,7 +9,7 @@
 </head>
 <body>
 
-{{--This will load the payment module from Pesapal, only if your details had no errors--}}
+{{--This will load the payment module from PesaPal--}}
 <iframe src="{{$iframe_src}}" width="100%" height="700px"  scrolling="no" frameBorder="0">
     <p>Browser unable to load iFrame</p>
 </iframe>
