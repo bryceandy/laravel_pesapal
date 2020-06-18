@@ -2,12 +2,10 @@
 
 namespace Bryceandy\Laravel_Pesapal;
 
-use Bryceandy\Laravel_Pesapal\Exceptions\ConfigurationUnavailableException;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthConsumer;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthRequest;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthSignatureMethod_HMAC_SHA1;
 use Illuminate\Config\Repository;
-use Illuminate\Support\Facades\Log;
 
 class Pesapal
 {
@@ -79,7 +77,6 @@ class Pesapal
     {
         // Pesapal params
         $postXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$request['currency']."\" Amount=\"".number_format($request['amount'], 2)."\" Description=\"".$request['description']."\" Type=\"".$request['type']."\" Reference=\"".$request['reference']."\" FirstName=\"".$request['first_name']?:''."\" LastName=\"".$request['last_name']?:''."\" Email=\"".$request['email']?:''."\" PhoneNumber=\"".$request['phone_number']?:''."\" xmlns=\"http://www.pesapal.com\" />";
-        Log::info($postXml);
         $postXml = htmlentities($postXml);
 
         // Post transaction to PesaPal
