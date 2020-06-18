@@ -2,7 +2,10 @@
 
 namespace Bryceandy\Laravel_Pesapal;
 
+use Bryceandy\Laravel_Pesapal\Http\Middleware\ValidateConfigMiddleware;
 use Bryceandy\Laravel_Pesapal\OAuth\OAuthSignatureMethod_HMAC_SHA1;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class PesapalServiceProvider extends ServiceProvider
@@ -11,6 +14,7 @@ class PesapalServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     * @throws BindingResolutionException
      */
     public function boot()
     {
@@ -21,6 +25,10 @@ class PesapalServiceProvider extends ServiceProvider
             ], 'pesapal-config');
         }
 
+        // Load middleware alias
+        $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('config', ValidateConfigMiddleware::class);
+        // Resources
         $this->loadResources();
     }
 

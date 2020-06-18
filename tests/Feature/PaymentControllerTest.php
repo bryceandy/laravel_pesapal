@@ -10,7 +10,7 @@ class PaymentControllerTest extends TestCase
 {
     /**
      * Mocked Config
-     * 
+     *
      * @param Application $app
      */
     protected function getEnvironmentSetUp($app)
