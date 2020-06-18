@@ -1,8 +1,11 @@
 # Change Log
 
+## [v2.0.3](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.2...v2.0.3) - June 18, 2020  
+  * Parameterize post_xml variable 
+
 ## [v2.0.2](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.1...v2.0.2) - June 18, 2020  
   * Create middleware to validate configurations 
-  * Use request array to create post_xml 
+  * Use request array to create post_xml  
 
 ## [v2.0.1](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.0...v2.0.1) - June 18, 2020  
   * Add a route name for the route that posts payments

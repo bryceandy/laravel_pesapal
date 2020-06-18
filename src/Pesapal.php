@@ -75,8 +75,14 @@ class Pesapal
      */
     public function getIframeSource($request)
     {
+        $parameterizedValue = "";
         // Pesapal params
-        $postXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$request['currency']."\" Amount=\"".number_format($request['amount'], 2)."\" Description=\"".$request['description']."\" Type=\"".$request['type']."\" Reference=\"".$request['reference']."\" FirstName=\"".$request['first_name']?:''."\" LastName=\"".$request['last_name']?:''."\" Email=\"".$request['email']?:''."\" PhoneNumber=\"".$request['phone_number']?:''."\" xmlns=\"http://www.pesapal.com\" />";
+        $request['first_name'] ? $parameterizedValue .= "\" FirstName=\"".$request['first_name'] : null;
+        $request['last_name'] ? $parameterizedValue .= "\" LastName=\"".$request['last_name'] : null;
+        $request['email'] ? $parameterizedValue .= "\" Email=\"".$request['email'] : null;
+        $request['phone_number'] ? $parameterizedValue .= "\" PhoneNumber=\"".$request['phone_number'] : null;
+
+        $postXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchemainstance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Currency=\"".$request['currency']."\" Amount=\"".number_format($request['amount'], 2)."\" Description=\"".$request['description']."\" Type=\"".$request['type']."\" Reference=\"".$request['reference'].$parameterizedValue."\" xmlns=\"http://www.pesapal.com\" />";
         $postXml = htmlentities($postXml);
 
         // Post transaction to PesaPal
