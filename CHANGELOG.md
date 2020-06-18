@@ -1,5 +1,9 @@
 # Change Log
 
+## [v2.0.1](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.0...v2.0.1) - June 18, 2020  
+  * Add a route name for the route that posts payments
+  * Remove csrf key in the array that saves a new payment  
+
 ## [v2.0.0](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.0-beta.1...v2.0.0) - June 17, 2020  
   * Version 2 release  
 
