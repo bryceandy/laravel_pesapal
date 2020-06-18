@@ -45,7 +45,7 @@ class PaymentController
 
         Payment::create($request->except(['type', '_token']));
 
-        $iframe_src = Pesapal::getIframeSource($request);
+        $iframe_src = Pesapal::getIframeSource($request->all());
 
         return view ('laravel_pesapal::iframe', compact('iframe_src'));
     }
