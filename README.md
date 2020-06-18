@@ -155,7 +155,7 @@ If this does not have a good user experience, you may setup an 'IPN listener' wh
 
  B. Setting up an IPN (Instant Payment Notifications) listener.  
     
-**This only applies to live business accounts**. Create a route (not view) for your IPN listener, for example a GET request to `/pesapal-ipn-listener`  
+**This only applies to merchant accounts**. Create a route (not view) for your IPN listener, for example a GET request to `/pesapal-ipn-listener`  
 
 Your IPN Controller could look like this:  
 
@@ -209,7 +209,9 @@ This controller method will be called every time PesaPal sends you an IPN notifi
 
 # IMPORTANT  
 
-For live accounts, on your PesaPal dashboard find your Account Settings and click IPN Settings.  
+## Register IPN settings  
+
+On your PesaPal dashboard find your Account Settings and click IPN Settings.  
  
 Fill in your website domain for example `yourWebsite.com` and IPN listener URL, for example `yourWebsite.co.tz/pesapal-ipn-listener`.  
 
