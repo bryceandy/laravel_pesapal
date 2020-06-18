@@ -7,39 +7,30 @@
 <a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/license.svg" alt="License"></a>  
 
 
-This package enables Laravel developers to easily make use of the [PesaPal](https://www.pesapal.com) API. 
- 
-There are M-Pesa, TigoPesa payments popular with East African mobile money systems. Other payment integrations include, but not limited to:  
-
-  - Mastercard  
-  - Visa  
-  - American Express  
+This package enables Laravel developers to easily make use of the [PesaPal](https://www.pesapal.com) API.  
 
 ![Pesapal iFrame](images/iFrame.png)  
-
 
 # Version support   
 
 | Laravel version | Package version | Maintenance |
 | --- | --- | --- |
 | 5.7 - 6 | 1.0.0 - 1.0.1 | No longer maintained |
-| 7 and above | 2.0.0 | Actively maintained |  
-
+| 7 and above | 2.* | Actively maintained |  
 
 # Installation  
 
 Pre-installation requirements  
 
-  - A running  or newly installed Laravel 7.* or above  
-  - PHP 7.4 or above  
-  - cURL extension installed  
+  * A running  or newly installed Laravel 7.* or above  
+  * PHP 7.4 or above  
+  * cURL extension installed  
 
-Now run the command...  
+Now run  
 
 ```bash
 composer require bryceandy/laravel_pesapal
 ```  
- 
  
 # Configuration  
  
@@ -54,7 +45,6 @@ After publishing, you will find a `pesapal.php` file in your `config` directory
 Head over to [demo](https://demo.pesapal.com) if you want a testing environment or [live](https://www.pesapal.com) for a live integration and create a business account. You will obtain a key-secret pair for your integration
 
 ![Pesapal Registration](images/register.png)   
- 
 
 Inside your `.env` file, create these environment variables and they will be used to set configuration values available in the published `config/pesapal.php` file  
 
@@ -73,7 +63,6 @@ There after run the migration command as the package will load a database migrat
 php artisan migrate
 ```  
 
-
 # Usage  
   
 ### Before making a payment, setup a callback page.  
@@ -82,10 +71,9 @@ Create a callback page and register its URL in the `PESAPAL_CALLBACK_URL` enviro
 
 Once a payment process has been completed by the user, PesaPal will redirect to your site using the url.  
  
-  
 ### Making a request to PesaPal for a payment.  
 
-PesaPal requires a request sent to their API in order to display the 'Choose payment option' form for you, like the one we [see above](#pesapal-package-for-laravel-apps )  
+PesaPal requires a request sent to their API in order to display the form like the one we [see above](#pesapal-package-for-laravel-apps )  
  
 This package comes with a route `/pesapal/iframe` where you can post the data as follows:  
 
@@ -108,38 +96,31 @@ This package comes with a route `/pesapal/iframe` where you can post the data as
 ]
 ```  
 
-For the **type** field, leave the default as MERCHANT. Use ORDER if your payment meets the following:  
-1. The order needs to be shipped.  
-2. The customer has the option to verify the delivery as satisfactory.  
-3. The payment is held in escrow until the completion of the delivery and acceptance process.  
-
-**Note:** if you use ORDER, it requires you to mark the order as SHIPPED and DELIVERED via your PesaPal merchant console.  
+For the **type** field, leave the default as MERCHANT. If you use ORDER, be sure to read the PesaPal documentation first.    
 
 When the data is posted successfully, you will have a view of the form to make payments.  
 
 A new payment record will be recorded in your `pesapal_payments` table, now you can choose the payment option you prefer.  
 
-
 ### Fetching the payment status.  
  
 After making the payment you will be redirected to the callback URL as mentioned above, and PesaPal will redirect with two query parameters:  
 
-- pesapal_merchant_reference – this is the same as `$reference` that you posted to PesaPal
-- pesapal_transaction_tracking_id - a unique id for the transaction on PesaPal that you can use to track the status of the transaction later  
+ * pesapal_merchant_reference – this is the same as `$reference` that you posted to PesaPal
+ * pesapal_transaction_tracking_id - a unique id for the transaction on PesaPal that you can use to track the status of the transaction later  
 
 With these two we can now:  
 
-A: Use these parameters to query the payment status to display to the user.  
+ A. Use these parameters to query the payment status to display to the user.  
 
 Normally on your callback page you can display whatever you need to your customer to show that the payment is being processed.  
-
+    
 ![Callback page sample](images/callback.png)  
+    
+But because PesaPal will send the payment tracking Id which you have not recorded, you can save this unique tracking Id for your payment and also query for the payment status.  
 
-
-But because PesaPal will send the payment tracking Id which you have not recorded, you have the opportunity to save this unique tracking Id for your payment and also query for the payment status.  
-
-In the controller method where you display the callback page, we can query the status:   
-
+In the controller method where you display the callback page, query the status:   
+    
 ```php
 namespace App\Http\Controllers;
 
@@ -167,16 +148,14 @@ class CallbackController extends Controller
     }
 }
 ```  
-
-The way requires you have to refresh the page periodically because you may not know when the status is 'COMPLETED'.  
-
-- You can use javascript to automatically refresh this page to get the status.  
-**OR**
-- You can also setup an 'IPN listener', where PesaPal notifies you when a payment status has changed.  
-
-B: Set up an IPN (Instant Payment Notifications) listener.
     
-**This only applies to live accounts**. Create a route (not view) for your IPN listener, for example a GET request to `/pesapal-ipn-listener`  
+The way requires you have to refresh the page because you may not know when the status has changed.  
+
+If this does not have a good user experience, you may setup an 'IPN listener' where PesaPal notifies you when a payment status has changed.  
+
+ B. Setting up an IPN (Instant Payment Notifications) listener.  
+    
+**This only applies to live business accounts**. Create a route (not view) for your IPN listener, for example a GET request to `/pesapal-ipn-listener`  
 
 Your IPN Controller could look like this:  
 
@@ -228,7 +207,6 @@ class IpnController extends Controller
 
 This controller method will be called every time PesaPal sends you an IPN notification until the payment is completed or has failed.
 
-
 # IMPORTANT  
 
 For live accounts, on your PesaPal dashboard find your Account Settings and click IPN Settings.  
@@ -237,17 +215,12 @@ Fill in your website domain for example `yourWebsite.com` and IPN listener URL, 
 
 This is important so that PesaPal can send IPN notifications.  
 
-**Go ahead and start making payments!**.   
-
-
 # License   
 
 MIT License.
-
 
 # Contributors  
 
 The base of this package is from the PHP API of [PesaPal](https://pesapal.com)  
   
   - [BryceAndy](http://bryceandy.com) > hello@bryceandy.com  
-  - Feel free to create pull requests and contribute to this package
