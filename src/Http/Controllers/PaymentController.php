@@ -43,7 +43,7 @@ class PaymentController
             'phone_number' => 'required_without:email|numeric',
         ])->validate();
 
-        Payment::create($request->except('type'));
+        Payment::create($request->except(['type', '_token']));
 
         $iframe_src = Pesapal::getIframeSource($request);
 
