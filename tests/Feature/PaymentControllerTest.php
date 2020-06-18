@@ -4,9 +4,22 @@ namespace Bryceandy\Laravel_Pesapal\Tests\Feature;
 
 use Bryceandy\Laravel_Pesapal\Payment;
 use Bryceandy\Laravel_Pesapal\Tests\TestCase;
+use Illuminate\Foundation\Application;
 
 class PaymentControllerTest extends TestCase
 {
+    /**
+     * Mocked Config
+     * 
+     * @param Application $app
+     */
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('pesapal.consumer_key', 'key');
+        $app['config']->set('pesapal.consumer_secret', 'secret');
+        $app['config']->set('pesapal.callback_url', 'http://testurl.com');
+    }
+
     /** @test */
     public function required_attributes_should_be_validated_when_posting_payments()
     {
