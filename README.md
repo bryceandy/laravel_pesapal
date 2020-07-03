@@ -126,25 +126,23 @@ namespace App\Http\Controllers;
 
 use Bryceandy\Laravel_Pesapal\Facades\Pesapal;
 use Bryceandy\Laravel_Pesapal\Payment;
-use Illuminate\Http\Request;
 
 class CallbackController extends Controller 
 {
-    public function index(Request $request)
+    public function index()
     {
-        $merchantReference = $request->pesapal_merchant_reference;
-        $trackingId = $request->pesapal_transaction_tracking_id;
-
+        $transaction = Pesapal::getTransactionDetails(
+            request('pesapal_merchant_reference'), request('pesapal_transaction_tracking_id')
+        );
+        
         // Store the paymentMethod, trackingId and status in the database
-        $transaction = Pesapal::getTransactionDetails($merchantReference, $trackingId);
         Payment::modify($transaction);
 
         $status = $transaction['status'];
-        // also $status = Pesapal::statusByTrackingIdAndMerchantRef($merchantReference, $trackingId);
-        // also $status = Pesapal::statusByMerchantRef($merchantReference);
+        // also $status = Pesapal::statusByTrackingIdAndMerchantRef(request('pesapal_merchant_reference'), request('pesapal_transaction_tracking_id'));
+        // also $status = Pesapal::statusByMerchantRef(request('pesapal_merchant_reference'));
 
-        return view('your_callback_view', compact('status'));
-        // In the view you can display this status to the user. Values are (PENDING, COMPLETED, INVALID, or FAILED)
+        return view('your_callback_view', compact('status')); // Display this status to the user. Values are (PENDING, COMPLETED, INVALID, or FAILED)
     }
 }
 ```  
@@ -165,36 +163,34 @@ namespace App\Http\Controllers;
 use Bryceandy\Laravel_Pesapal\Facades\Pesapal;
 use Bryceandy\Laravel_Pesapal\Payment;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
 
 class IpnController extends Controller 
 {
-    public function index(Request $request)
+    public function index()
     {
-        $pesapalNotification = $request->pesapal_notification_type;
-        $merchantReference = $request->pesapal_merchant_reference;
-        $trackingId = $request->pesapal_transaction_tracking_id;
+        $transaction = Pesapal::getTransactionDetails(
+            request('pesapal_merchant_reference'), request('pesapal_transaction_tracking_id')
+        );
 
-        // Store the paymentMethod, trackingId and status in the database
-        $transaction = Pesapal::getTransactionDetails($merchantReference, $trackingId);
+        // Store the paymentMethod, trackingId and status in the database        
         Payment::modify($transaction);
 
         // If there was a status change and the status is not 'PENDING'
-        if($pesapalNotification == "CHANGE" && $trackingId != ''){
+        if(request('pesapal_notification_type') == "CHANGE" && request('pesapal_transaction_tracking_id') != ''){
 
             //Here you can do multiple things to notify your user that the changed status of their payment
             // 1. Send an email or SMS (if your user doesnt have an email)to your user 
-            $payment = Payment::whereReference($merchantReference)->first();
-            Mail::to($payment->email)->send(new PaymentProcessed($trackingId, $transaction['status']));
-            // PaymentProcessed is an example of a mailable, it does not come with the package
+            $payment = Payment::whereReference(request('pesapal_merchant_reference'))->first();
+            Mail::to($payment->email)->send(new PaymentProcessed(request('pesapal_transaction_tracking_id'), $transaction['status']));
+            // PaymentProcessed is an example of a mailable email, it does not come with the package
         
             // 2. You may also create a Laravel Event & Listener to process a Notification to the user
             // 3. You can also create a Laravel Notification or dispatch a Laravel Job. Possibilities are endless! 
 
             // Finally output a response to PesaPal
-            $response = 'pesapal_notification_type='.$pesapalNotification.
-                    '&pesapal_transaction_tracking_id='.$trackingId.
-                    '&pesapal_merchant_reference='.$merchantReference;
+            $response = 'pesapal_notification_type=' . request('pesapal_notification_type').
+                    '&pesapal_transaction_tracking_id=' . request('pesapal_transaction_tracking_id').
+                    '&pesapal_merchant_reference=' . request('pesapal_merchant_reference');
             
             ob_start();
             echo $response;
