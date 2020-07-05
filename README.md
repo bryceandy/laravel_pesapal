@@ -79,9 +79,8 @@ This package comes with a route `/pesapal/iframe` where you can post the data as
 
 ```php
 /**
- * Create a form and send the appropriate values. You may
- * as well post json through your API or url parameters
- * but keep in mind a view is what will be returned.
+ * Create a form and send the appropriate values. You may as
+ * well send url parameters where a view will be returned.
  */
 [
     'amount' => 'Required, input should be numbers only',

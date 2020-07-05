@@ -7,4 +7,8 @@ Route::group(['namespace' => 'Bryceandy\Laravel_Pesapal\Http\Controllers'], func
     Route::post('pesapal/iframe', 'PaymentController@store')
         ->name('payment.store')
         ->middleware('config');
+
+    Route::get('pesapal/iframe', 'PaymentController@store')
+        ->name('payment.store.get')
+        ->middleware('config');
 });
