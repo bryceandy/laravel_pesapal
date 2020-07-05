@@ -1,5 +1,8 @@
 # Change Log
 
+## [v2.0.4](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.3...v2.0.4) - July 5, 2020  
+  * Add support to post payments with get requests  
+
 ## [v2.0.3](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.2...v2.0.3) - June 18, 2020  
   * Parameterize post_xml variable 
 
