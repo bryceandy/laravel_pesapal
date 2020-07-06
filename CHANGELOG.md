@@ -1,5 +1,8 @@
 # Change Log
 
+## [v2.0.6](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.5...v2.0.6) - July 7, 2020  
+  * Fix: enable iframe scrolling on smaller devices
+
 ## [v2.0.5](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.4...v2.0.5) - July 6, 2020  
   * Fix: properly check request parameters that are missing 
 
