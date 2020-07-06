@@ -1,5 +1,8 @@
 # Change Log
 
+## [v2.0.5](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.4...v2.0.5) - July 6, 2020  
+  * Fix: properly check request parameters that are missing 
+
 ## [v2.0.4](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.3...v2.0.4) - July 5, 2020  
   * Add support to post payments with get requests  
 
