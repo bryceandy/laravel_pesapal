@@ -61,8 +61,9 @@ class Pesapal
         $this->consumerSecret = config('pesapal.consumer_secret');
         $this->consumer = new OAuthConsumer($this->consumerKey, $this->consumerSecret);
         $this->signatureMethod = $signature;
-        $this->serverURL = config('pesapal.is_live') ?
-            'https://www.pesapal.com' : 'https://demo.pesapal.com';
+        $this->serverURL = config('pesapal.is_live')
+            ? 'https://www.pesapal.com'
+            : 'https://demo.pesapal.com';
         $this->iframeLink = $this->serverURL . '/api/PostPesapalDirectOrderV4';
         $this->callbackUrl = config('pesapal.callback_url');
     }
