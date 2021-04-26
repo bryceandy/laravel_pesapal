@@ -6,6 +6,7 @@ use Bryceandy\Laravel_Pesapal\Payment;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class PaymentController
@@ -23,11 +24,14 @@ class PaymentController
     }
 
     /**
-     * Stores a new payment, post it to PesaPal &
+     * Stores a new payment, post it to Pesapal &
      * displays the iframe with payment methods
      *
      * @param Request $request
+     *
      * @return Factory|View
+     *
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
