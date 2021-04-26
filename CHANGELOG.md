@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2.0.7](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.6...v2.0.7) - April 26, 2021
+  * Update [hamcrest](https://github.com/hamcrest/hamcrest-php) due to an issue with its generator
+  * Bump [laravel](https://github.com/laravel/framework) from 7.16.1 to 7.30.*
+  * Bump [symphony kernel](https://github.com/symphony/http-kernel) from 5.1.2 to 5.1.5
+  * Update phpunit configuration to the latest valid schema
+
 ## [v2.0.6](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.5...v2.0.6) - July 7, 2020  
   * Fix: enable iframe scrolling on smaller devices
 
