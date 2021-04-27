@@ -150,7 +150,7 @@ If this does not have a good user experience, you may setup an 'IPN listener' wh
 
  B. Setting up an IPN (Instant Payment Notifications) listener.  
     
-**This only applies to merchant accounts**. Create a route for your IPN listener
+**This only applies to merchant accounts**. Create a route for your IPN listener, for example a GET request to /pesapal-ipn-listener
 
 ```php
 // For Laravel 7.*
