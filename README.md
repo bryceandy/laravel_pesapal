@@ -144,7 +144,7 @@ class CallbackController extends Controller
 }
 ```  
     
-The way requires you have to refresh the page because you may not know when the status has changed.  
+This way requires you to refresh the page because you may not know when the status has changed.  
 
 If this does not have a good user experience, you may setup an 'IPN listener' where Pesapal notifies you when a payment status has changed.  
 
