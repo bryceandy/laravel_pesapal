@@ -1,5 +1,10 @@
 # Change Log
 
+## [v2.0.8](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.7...v2.0.8) - May 6, 2021
+  * Add a custom message for ConfigurationUnavailableException
+  * Throw ValidationException when validating request data
+  * Minor fixes
+
 ## [v2.0.7](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.6...v2.0.7) - April 26, 2021
   * Update [hamcrest](https://github.com/hamcrest/hamcrest-php) due to an issue with its generator
   * Bump [laravel](https://github.com/laravel/framework) from 7.16.1 to 7.30.*
