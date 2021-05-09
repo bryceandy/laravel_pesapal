@@ -4,6 +4,7 @@
 <a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/bryceandy/laravel_pesapal"><img src="https://poser.pugx.org/bryceandy/laravel_pesapal/license.svg" alt="License"></a>  
+<a href="https://patreon.com/bryceandy"><img src="https://camo.githubusercontent.com/30769f9470f623db56c689c8c1722d7bcb51efb1e1128d464958b58f27090872/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f70617472656f6e2d646f6e6174652d79656c6c6f772e737667" alt="Donate to this project using Patreon" data-canonical-src="https://img.shields.io/badge/patreon-donate-yellow.svg" style="max-width:100%;"></a>
 
 This package enables Laravel developers to easily make use of the [Pesapal](https://www.pesapal.com) API.  
 
@@ -225,4 +226,10 @@ MIT License.
 
 This package is based from the PHP API of [Pesapal](https://pesapal.com)  
   
-  - [BryceAndy](http://bryceandy.com) > hello@bryceandy.com  
+  - [BryceAndy](http://bryceandy.com) > hello@bryceandy.com
+
+## Sponsorship
+
+If you enjoy using this package, consider contributing to the maintainer
+
+<a href="https://patreon.com/bryceandy"><img src="https://camo.githubusercontent.com/30769f9470f623db56c689c8c1722d7bcb51efb1e1128d464958b58f27090872/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f70617472656f6e2d646f6e6174652d79656c6c6f772e737667" alt="Donate to this project using Patreon" data-canonical-src="https://img.shields.io/badge/patreon-donate-yellow.svg" style="max-width:100%;"></a>
