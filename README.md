@@ -50,7 +50,7 @@ Inside your `.env` file, create these environment variables and they will be use
 Use the keys you obtained from Pesapal to fill the key and secret. If you are on a live account, set the **is_live** variable to true.  
 
 ```dotenv
-PESPAL_KEY=yourConsumerKey
+PESAPAL_KEY=yourConsumerKey
 PESAPAL_SECRET=yourConsumerSecret
 PESAPAL_IS_LIVE=false
 PESAPAL_CALLBACK_URL=
