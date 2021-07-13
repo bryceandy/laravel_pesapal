@@ -1,5 +1,9 @@
 # Change Log
 
+## [v2.0.9](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.9...v2.0.8) - July 13, 2021
+  * Bump [file system](https://github.com/thephpleague/flysystem) from 1.1.3 to 1.1.4
+  * Update other dependencies
+
 ## [v2.0.8](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.7...v2.0.8) - May 6, 2021
   * Add a custom message for ConfigurationUnavailableException
   * Throw ValidationException when validating request data
