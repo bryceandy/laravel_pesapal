@@ -1,6 +1,9 @@
 # Change Log
 
-## [v2.0.9](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.9...v2.0.8) - July 13, 2021
+## [v2.1.0](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.9...v2.1.0) - October 28, 2021
+ * Add support for PHP 8
+
+## [v2.0.9](https://github.com/bryceandy/laravel_pesapal/compare/v2.0.8...v2.0.9) - July 13, 2021
   * Bump [file system](https://github.com/thephpleague/flysystem) from 1.1.3 to 1.1.4
   * Update other dependencies
 
